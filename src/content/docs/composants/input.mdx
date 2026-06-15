@@ -1,0 +1,67 @@
+---
+title: Input
+description: Champ de saisie Clutch — text, search, dropdown, password. Focus ring lime, radius 0.
+---
+
+import Input from '../../../components/clutch/Input.tsx';
+
+Champ de saisie. Hauteur 48px, fond blanc, **focus ring lime 2px** (et non violet), label flottant en « chip ». La **Search Bar** n'est pas un composant séparé : c'est `Input type="search"`.
+
+## Aperçu live
+
+### Types
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '28px', padding: '32px 24px', background: '#f6f6f8' }}>
+  <Input type="text" label="Pseudo" placeholder="Ton pseudo" client:load />
+  <Input type="search" placeholder="Rechercher…" client:load />
+  <Input type="dropdown" label="Jeu" placeholder="Choisir un jeu" client:load />
+  <Input type="password" label="Mot de passe" placeholder="••••••" client:load />
+</div>
+
+### États
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '28px', padding: '32px 24px', background: '#f6f6f8' }}>
+  <Input label="Default" placeholder="Vide" client:load />
+  <Input label="Filled" value="Clutch_Player" client:load />
+  <Input label="Error" value="xx" error supportingText="3 caractères minimum" client:load />
+  <Input label="Disabled" placeholder="Indisponible" disabled client:load />
+</div>
+
+## Specs
+
+| Propriété        | Valeur                                  |
+| ---------------- | --------------------------------------- |
+| Hauteur          | 48px                                    |
+| Padding interne  | g16 · d8 · h/b4 · gap4                   |
+| Fond             | #ffffff                                 |
+| Texte saisi      | Space Grotesk 16/22                      |
+| Placeholder      | ink 60 %                                |
+| Label flottant   | SG 12 · chip fond blanc · top −10px      |
+| Icônes           | 18×18px                                  |
+| Radius           | 0                                       |
+
+| État     | Bordure                  | Accent              |
+| -------- | ------------------------ | ------------------- |
+| Default  | 1px ink 20 %             | placeholder ink 60 %|
+| Hover    | 1px ink 40 %             | —                   |
+| Focus    | **2px lime #C6FF33**     | label ink           |
+| Filled   | 1px ink 20 %             | clear ✕ visible     |
+| Disabled | 1px ink 20 % + opacity   | texte ink 40 %      |
+| Error    | 1px error #fe3939        | label + supporting rouge |
+
+## Props
+
+```ts
+type?: 'text' | 'search' | 'dropdown' | 'password'
+label?, placeholder?, value?, supportingText?: string
+error?, disabled?: boolean
+showLabel?, showLeadingIcon?, showTrailingIcon?: boolean
+onChange?: (value) => void · onClear?: () => void
+```
+
+## Usage
+
+- Toujours un **label OU un placeholder** explicite ; `supportingText` pour les règles de saisie.
+- L'état `error` est **toujours** accompagné d'un message (jamais la couleur seule).
+- Pour la recherche : `type="search"` (loupe + clear automatique). Ne pas recréer un champ ad hoc.
+- Une seule recherche globale par écran.

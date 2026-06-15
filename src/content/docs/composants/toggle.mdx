@@ -1,0 +1,39 @@
+---
+title: Toggle
+description: Interrupteur on/off — piste carrée (radius 0), ON violet.
+---
+
+import Toggle from '../../../components/clutch/Toggle.tsx';
+
+Interrupteur on/off. Piste **carrée** (radius 0, arbitrage brutalisme — pas de pill). État **ON = violet** `#683EF6`.
+
+## Aperçu live
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', alignItems: 'center', padding: '24px', background: '#f6f6f8' }}>
+  <Toggle defaultChecked client:load />
+  <Toggle client:load />
+  <Toggle defaultChecked disabled client:load />
+  <Toggle disabled client:load />
+</div>
+
+## Specs
+
+| Élément  | Valeur                          |
+| -------- | ------------------------------- |
+| Piste    | 40×22px · radius 0              |
+| Knob     | 18×18px · top 2px               |
+| ON       | left 20px · fond violet #683EF6 |
+| OFF      | left 3px · fond ink 20 %        |
+
+## Props
+
+```ts
+checked?: boolean          // contrôlé
+defaultChecked?: boolean   // non contrôlé
+disabled?: boolean
+onChange?: (checked) => void
+```
+
+## Usage
+
+Bascule binaire immédiate (pas de validation). Pour un choix nécessitant confirmation, préférer un bouton.

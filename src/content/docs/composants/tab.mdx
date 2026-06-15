@@ -1,0 +1,40 @@
+---
+title: Tab
+description: Onglet à soulignement — actif = underline violet 2px + glow.
+---
+
+import Tab from '../../../components/clutch/Tab.tsx';
+
+Onglet (pattern **soulignement**). Actif = border-bottom violet 2px + drop-shadow violet, texte encre. Inactif = texte ink 40 %, pas de bordure. Le pill violet est déprécié.
+
+## Aperçu live
+
+<div style={{ display: 'flex', gap: '4px', alignItems: 'center', padding: '24px 24px 0', background: '#f6f6f8', borderBottom: '1px solid rgba(26,25,28,.1)' }}>
+  <Tab label="Toutes" count={47} active client:load />
+  <Tab label="Ouvertes" count={12} client:load />
+  <Tab label="En cours" count={3} client:load />
+  <Tab label="Terminées" count={32} client:load />
+</div>
+
+## Specs
+
+| Propriété | Valeur                                   |
+| --------- | ---------------------------------------- |
+| Padding   | H 16px                                   |
+| Texte     | Space Grotesk Bold 11px · LS 0.5px · UPPERCASE |
+| Actif     | border-bottom 2px violet + drop-shadow violet |
+| Inactif   | texte ink 40 % · pas de bordure          |
+| Radius    | 0                                        |
+
+## Props
+
+```ts
+label: string
+count?: number
+active?: boolean
+onClick?: () => void
+```
+
+## Usage
+
+Format de libellé : `TOUTES · 47`. Un seul onglet actif à la fois ; gérer l'état actif au niveau du conteneur parent.

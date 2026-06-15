@@ -1,0 +1,50 @@
+---
+title: Avatar
+description: Photo de profil — 4 tailles, carré (radius 0), pastille de statut optionnelle.
+---
+
+import Avatar from '../../../components/clutch/Avatar.tsx';
+
+Photo de profil. **Carré, jamais circulaire** (radius 0, arbitrage brutalisme) — contrairement au Figma qui rendait circulaire. Pastille de statut optionnelle en overlay bas-droite.
+
+## Aperçu live
+
+### Tailles
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'flex-end', padding: '24px', background: '#f6f6f8' }}>
+  <Avatar size="sm" alt="Nova Player" client:load />
+  <Avatar size="md" alt="Nova Player" client:load />
+  <Avatar size="lg" alt="Nova Player" client:load />
+  <Avatar size="xl" alt="Nova Player" client:load />
+</div>
+
+### Avec statut
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'flex-end', padding: '24px', background: '#f6f6f8' }}>
+  <Avatar size="lg" alt="On Line" status="online" client:load />
+  <Avatar size="lg" alt="A Way" status="away" client:load />
+  <Avatar size="lg" alt="Off Line" status="offline" client:load />
+</div>
+
+## Specs
+
+| Size | Dimensions | Radius |
+| ---- | ---------- | ------ |
+| sm   | 24×24px    | 0      |
+| md   | 32×32px    | 0      |
+| lg   | 40×40px    | 0      |
+| xl   | 64×64px    | 0      |
+
+Bordure 1px ink 40 %. Pastille de statut 10px (sur L) avec contour blanc.
+
+## Props
+
+```ts
+size?: 'sm' | 'md' | 'lg' | 'xl'   // défaut 'md'
+src?, alt?: string
+status?: 'online' | 'away' | 'offline'
+```
+
+## Usage
+
+Sans `src`, l'avatar affiche les initiales déduites de `alt`. La pastille reprend la couleur du **Status Badge** correspondant.

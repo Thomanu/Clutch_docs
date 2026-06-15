@@ -22,6 +22,13 @@ export default defineConfig({
           label: 'Composants',
           items: [
             { label: 'Button', link: '/composants/button/' },
+            { label: 'Input', link: '/composants/input/' },
+            { label: 'Game Badge', link: '/composants/game-badge/' },
+            { label: 'Status Badge', link: '/composants/status-badge/' },
+            { label: 'State Badge', link: '/composants/state-badge/' },
+            { label: 'Avatar', link: '/composants/avatar/' },
+            { label: 'Toggle', link: '/composants/toggle/' },
+            { label: 'Tab', link: '/composants/tab/' },
           ],
         },
       ],

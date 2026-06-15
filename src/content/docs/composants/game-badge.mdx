@@ -1,0 +1,47 @@
+---
+title: Game Badge
+description: Badge d'identification du jeu — IBM Plex Mono, fond lime 10 %, radius 0.
+---
+
+import GameBadge from '../../../components/clutch/GameBadge.tsx';
+
+Badge identifiant le **jeu**. Police **IBM Plex Mono** (et non Space Grotesk), texte lime UPPERCASE, fond lime 10 %, bordure lime 40 %.
+
+## Aperçu live
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center', padding: '24px', background: '#f6f6f8' }}>
+  <GameBadge game="csgo" client:load />
+  <GameBadge game="r6" client:load />
+  <GameBadge game="valorant" client:load />
+  <GameBadge game="novacore" client:load />
+</div>
+
+### Variante sur image
+
+<div style={{ display: 'flex', gap: '12px', padding: '24px', background: '#1a191c' }}>
+  <GameBadge game="valorant" onImage client:load />
+  <GameBadge game="csgo" onImage client:load />
+</div>
+
+## Specs
+
+| Propriété | Valeur                          |
+| --------- | ------------------------------- |
+| Padding   | H 8px · V 3px                   |
+| Fond      | lime 10 % `rgba(198,255,51,.1)` |
+| Bordure   | 1px lime 40 %                   |
+| Texte     | IBM Plex Mono 9px · lime · UPPERCASE |
+| Radius    | 0                               |
+
+Variante `onImage` : overlay sombre `rgba(26,25,28,.6)`, bordure blanche 15 %, texte clair.
+
+## Props
+
+```ts
+game: 'csgo' | 'r6' | 'valorant' | 'novacore'
+onImage?: boolean
+```
+
+## Usage
+
+Réservé à l'**identification d'un jeu**. À ne pas confondre avec le **Status Badge** (présence d'un joueur) ni le **State Badge** (état d'un objet).
