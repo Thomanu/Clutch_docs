@@ -1,0 +1,64 @@
+/* ---- POLICES ---- */
+@font-face {
+    font-family: 'Base Neue';
+    src: url('/fonts/BaseNeueTrial.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Space Grotesk';
+    src: url('/fonts/SpaceGrotesk-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Space Grotesk';
+    src: url('/fonts/SpaceGrotesk-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+  }
+  
+  /* ---- TOKENS CLUTCH (light mode) ---- */
+  :root {
+    --clutch-violet: #683EF6;   /* CTA uniquement */
+    --clutch-lime:   #C6FF33;   /* success / records */
+    --clutch-ink:    #1a191c;   /* texte principal */
+  
+    --sl-color-accent:      var(--clutch-violet);
+    --sl-color-accent-low:  #e7ddff;
+    --sl-color-accent-high: #2a1a6b;
+  
+    --sl-color-white:     #1a191c;
+    --sl-color-gray-1:    #2a292d;
+    --sl-color-gray-2:    #45444a;
+    --sl-color-gray-3:    #6b6a70;
+    --sl-color-gray-4:    #9a99a0;
+    --sl-color-gray-5:    #c9c8cd;
+    --sl-color-gray-6:    #ededf0;
+    --sl-color-gray-7:    #f6f6f8;
+    --sl-color-black:     #ffffff;
+  
+    --sl-font: 'Space Grotesk', system-ui, sans-serif;
+    --sl-font-mono: 'Space Grotesk', monospace;
+  }
+  
+  :root[data-theme='dark'] { color-scheme: light; }
+  
+  /* ---- BRUTALISME : border-radius 0 partout ---- */
+  *, *::before, *::after { border-radius: 0 !important; }
+  
+  /* ---- TITRES en Base Neue ---- */
+  h1, h2, h3, h4,
+  .sl-markdown-content h1,
+  .sl-markdown-content h2,
+  .sl-markdown-content h3 {
+    font-family: 'Base Neue', 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  
+  /* ---- Signature : le slash "/" devant les h2 ---- */
+  .sl-markdown-content h2::before {
+    content: "/ ";
+    color: var(--clutch-violet);
+  }
