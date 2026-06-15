@@ -1,0 +1,83 @@
+---
+title: Button
+description: Bouton d'action du design system Clutch — 5 variantes, 3 tailles, états interactifs.
+---
+
+import Button from '../../../components/clutch/Button.tsx';
+
+Le bouton est l'élément d'action principal. **Le violet `#683EF6` est réservé au CTA principal** (variante `primary`). Le lime `#C6FF33` (variante `secondary`) est l'accent compétitif / succès. `borderRadius: 0` partout, texte en Space Grotesk Bold.
+
+## Aperçu live
+
+### Variantes
+
+<div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', padding: '24px', background: '#f6f6f8' }}>
+  <Button variant="primary" client:load>Rejoindre</Button>
+  <Button variant="secondary" client:load>Valider</Button>
+  <Button variant="tertiary" client:load>Détails</Button>
+  <Button variant="destructive" client:load>Supprimer</Button>
+  <Button variant="ghost" client:load>Annuler</Button>
+</div>
+
+### Tailles
+
+<div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', padding: '24px', background: '#f6f6f8' }}>
+  <Button size="sm" client:load>Small</Button>
+  <Button size="md" client:load>Medium</Button>
+  <Button size="lg" client:load>Large</Button>
+</div>
+
+### Icône & états
+
+<div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', padding: '24px', background: '#f6f6f8' }}>
+  <Button icon="arrow" iconPosition="left" client:load>Suivant</Button>
+  <Button icon="arrow" iconPosition="right" client:load>Suivant</Button>
+  <Button icon="arrow" iconOnly aria-label="Suivant" client:load />
+  <Button loading client:load>Chargement</Button>
+  <Button disabled client:load>Désactivé</Button>
+</div>
+
+## Specs
+
+| Size  | Hauteur | Padding H | Texte | Gap | Boîte icône | Radius |
+| ----- | ------- | --------- | ----- | --- | ----------- | ------ |
+| sm    | 32px    | 14px      | 12px  | 8px | 16px        | 0      |
+| md    | 44px    | 20px      | 14px  | 8px | 16px        | 0      |
+| lg    | 56px    | 28px      | 18px  | 8px | 16px        | 0      |
+
+| Variante     | Fond            | Texte    | Bordure        |
+| ------------ | --------------- | -------- | -------------- |
+| primary      | violet #683EF6  | #ffffff  | aucune         |
+| secondary    | lime #C6FF33    | #1a191c  | aucune         |
+| tertiary     | ink 10 %        | #1a191c  | aucune         |
+| destructive  | error #fe3939   | #ffffff  | aucune         |
+| ghost        | transparent     | #1a191c  | 1px ink 20 %   |
+
+| État     | Traitement                          |
+| -------- | ----------------------------------- |
+| hover    | fond couleur à 80 %                 |
+| active   | fond couleur à 60 %                 |
+| disabled | fond à 40 % + opacity globale 0.4   |
+| loading  | spinner à la place du label         |
+
+## Props
+
+```ts
+variant?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'ghost' // défaut 'primary'
+size?: 'sm' | 'md' | 'lg'                                                // défaut 'md'
+disabled?: boolean
+loading?: boolean
+icon?: ReactNode
+iconPosition?: 'left' | 'right'  // défaut 'left'
+iconOnly?: boolean
+onClick?: (e) => void
+```
+
+## Usage
+
+- **Un seul CTA `primary` (violet) par vue.** C'est l'action dominante.
+- `secondary` (lime) pour une action de succès / validation compétitive.
+- `destructive` pour les actions irréversibles (supprimer, quitter).
+- `ghost` pour les actions secondaires neutres, `tertiary` pour un fond subtil.
+- `iconOnly` uniquement si l'action est évidente — toujours fournir un `aria-label`.
+- **Interdit** : multiplier les CTA pleins concurrents, libellés longs (préférer un verbe court).
