@@ -98,3 +98,11 @@
     content: "/ ";
     color: var(--clutch-violet);
   }
+
+  /* ---- Logo agrandi dans l'en-tête ---- */
+  :root { --sl-nav-height: 5rem; }
+  .site-title img {
+    height: 3.5rem !important;
+    width: auto !important;
+    padding: 0 !important;
+  }
