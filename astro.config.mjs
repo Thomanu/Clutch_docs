@@ -6,6 +6,10 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Clutch Design System',
+      logo: {
+        src: './src/assets/logo_clutch.png',
+        replacesTitle: true,
+      },
       customCss: ['./src/styles/custom.css'],
       components: {
         ThemeSelect: './src/components/EmptyThemeSelect.astro',
