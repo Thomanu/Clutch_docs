@@ -1,0 +1,41 @@
+---
+title: Event Card
+description: Carte d'événement / scrim — 4 états, slots d'équipes, bloc date.
+---
+
+import EventCard from '../../../components/clutch/EventCard.tsx';
+
+Carte d'événement / scrim. 548×88px, bloc date + contenu + zone de slots d'équipes (5 carrés). État `live` = bordure rouge, `past` = opacité réduite.
+
+## Aperçu live
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '24px', background: '#f6f6f8' }}>
+  <EventCard state="open" date={{ weekday: 'Mer', day: 18 }} title="Scrim Valorant — Ascent" meta="21:00 · 3/5 confirmés" slotsFilled={3} client:load />
+  <EventCard state="full" date={{ weekday: 'Jeu', day: 19 }} title="Scrim CS — Mirage" meta="20:00 · 5/5 confirmés" slotsFilled={5} client:load />
+  <EventCard state="live" date={{ weekday: 'Ven', day: 20 }} title="Match amical — R6" meta="En direct · 21:30" slotsFilled={5} client:load />
+  <EventCard state="past" date={{ weekday: 'Lun', day: 15 }} title="Scrim terminé" meta="Joué · 4/5" slotsFilled={4} client:load />
+</div>
+
+## Specs
+
+| Propriété      | Valeur                                            |
+| -------------- | ------------------------------------------------- |
+| Dimensions     | 548×88px · padding 16 · gap 16                     |
+| Bordure        | open/full/past 1px ink 10 % · **live 1px rouge**  |
+| Past           | + opacity 0.55                                    |
+| Date block     | mono 10px (jour) + SG Bold 24px (n°)              |
+| Slots          | 5 carrés 10px (lime si remplis ; vide = rouge teinté en open) |
+
+## Props
+
+```ts
+state?: 'open' | 'full' | 'live' | 'past'
+date: { weekday: string; day: string | number }
+title: string · meta: string
+slotsFilled: number · slotsTotal?: number  // défaut 5
+onClick?: () => void
+```
+
+## Usage
+
+Liste d'événements/scrims à venir. Le bloc date utilise la police mono (technique). `live` attire l'œil par sa bordure rouge.

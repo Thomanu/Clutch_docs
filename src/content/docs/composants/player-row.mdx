@@ -1,0 +1,48 @@
+---
+title: Player Row
+description: Ligne joueur (roster) — statut, rôle, ready, capitaine, sélection, stat.
+---
+
+import PlayerRow from '../../../components/clutch/PlayerRow.tsx';
+
+Ligne joueur du roster (Squad Hub) — le composant le plus combinatoire (8 axes). Avatar + statut, bloc nom + rôle, statistique à droite, action rapide optionnelle.
+
+## Aperçu live
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '24px', background: '#f6f6f8' }}>
+  <PlayerRow name="Phantom" status="online" role="Duelist" statType="kd" statValue="1.42" kdTrend="positive" captain action client:load />
+  <PlayerRow name="Sage_Main" status="away" role="Controller" statType="rank" statValue="Diamond II" client:load />
+  <PlayerRow name="Sentinel_X" status="offline" role="Sentinel" ready="notReady" statType="kd" statValue="0.88" kdTrend="negative" client:load />
+  <PlayerRow name="IGL_Nova" status="online" role="IGL" ready="ready" statType="winrate" statValue="63% WR" selected client:load />
+  <PlayerRow name="FlexFrag" status="online" role="Flex" statType="adr" statValue="142 ADR" action client:load />
+</div>
+
+## Specs
+
+| Propriété          | Valeur                                                  |
+| ------------------ | ------------------------------------------------------- |
+| Dimensions         | 548×64px · px16 py12 · gap12                            |
+| Default            | fond #fff · bordure 1px ink 5 %                         |
+| Selected           | fond violet 10 % · bordure violet 40 %                 |
+| Ready bar (gauche) | 3px · success #388e3c / error #fe3939                  |
+| Avatar             | 40px + pastille statut 10px                            |
+| Nom                | SG Bold 14 ; + « C » lime si capitaine                 |
+| Role tag           | px8 py3 · SG Medium 11 (teinte selon rôle)             |
+| KD                 | mono 13 ; trend ▲/▼ → badge success / error            |
+
+## Props
+
+```ts
+name: string · avatar?: string
+status?: 'online' | 'away' | 'offline'
+role?: 'Duelist' | 'Initiator' | 'Controller' | 'Sentinel' | 'IGL' | 'Flex'
+ready?: 'default' | 'ready' | 'notReady'
+captain?, selected?, action?: boolean
+statType?: 'kd' | 'rank' | 'winrate' | 'adr' | 'mvp' · statValue?: string
+kdTrend?: 'none' | 'positive' | 'negative'
+onAction?: () => void
+```
+
+## Usage
+
+Le rôle, le statut et la stat sont composables. La barre `ready` (vert/rouge) signale l'état de préparation avant un match.

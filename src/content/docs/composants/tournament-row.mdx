@@ -1,0 +1,49 @@
+---
+title: Tournament Row
+description: Ligne de tournoi (Arena) — 4 zones, 4 états, badge + CTA contextuel.
+---
+
+import TournamentRow from '../../../components/clutch/TournamentRow.tsx';
+
+Ligne de tournoi de la liste Arena. 4 zones : identité (game badge + titre), détails, équipes (progress), CTA (state badge + bouton). Bordure et CTA varient selon l'état.
+
+## Aperçu live
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '24px', background: '#f6f6f8', overflowX: 'auto' }}>
+  <TournamentRow state="open" game="valorant" title="NOVA CUP #4" organizer="par NovaOrg · EU" details={{ format: 'BO3 · 16 équipes', date: '24 juin · 20:00', prize: '500 €', maps: 'Ascent, Haven' }} teams={{ filled: 14, total: 16 }} client:load />
+  <TournamentRow state="full" game="csgo" title="MIRAGE MASTERS" organizer="par ESL · EU" details={{ format: 'BO1 · 16 équipes', date: '25 juin · 18:00', prize: '1000 €', maps: 'Mirage' }} teams={{ filled: 16, total: 16 }} client:load />
+  <TournamentRow state="live" game="r6" title="SIEGE SHOWDOWN" organizer="par Ubi · EU" details={{ format: 'BO3 · 8 équipes', date: 'En direct', prize: '750 €', maps: 'Bank, Oregon' }} teams={{ filled: 8, total: 8 }} client:load />
+  <TournamentRow state="closed" game="novacore" title="CORE CLASH" organizer="par Clutch · EU" details={{ format: 'BO5 · 4 équipes', date: 'Terminé', prize: '2000 €', maps: 'Core A/B' }} teams={{ filled: 4, total: 4 }} client:load />
+</div>
+
+## Specs
+
+| Élément     | Valeur                                                       |
+| ----------- | ------------------------------------------------------------ |
+| Dimensions  | 1120×140px · px24 py20 · gap24                               |
+| Bordure     | open/full lime 20 % · live lime · closed ink 10 %            |
+| Z1 Identity | w200 · GameBadge + titre Base Neue 18 + organisateur SG 12   |
+| Z2 Details  | flex · 2 lignes (Format/Date, Prize/Maps)                    |
+| Z3 Teams    | w160 · header + progress violet→lime + caption               |
+| Z4 CTA      | w140 · State Badge + bouton contextuel                       |
+
+| État   | Badge   | CTA              |
+| ------ | ------- | ---------------- |
+| open   | OUVERT  | Rejoindre (violet)|
+| full   | COMPLET | Liste d'attente   |
+| live   | LIVE    | Regarder (violet) |
+| closed | FERMÉ   | Résultats         |
+
+## Props
+
+```ts
+state?: 'open' | 'full' | 'live' | 'closed'
+game · title · organizer: string
+details: { format, date, prize, maps }
+teams: { filled: number; total: number }
+onAction?: () => void
+```
+
+## Usage
+
+Composant d'organisme : assemble Game Badge, State Badge, Progress Bar et Button. La largeur s'adapte (max 1120px).

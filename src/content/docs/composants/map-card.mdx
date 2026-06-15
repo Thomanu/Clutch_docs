@@ -1,0 +1,40 @@
+---
+title: Map Card
+description: Carte de map — image, HUD corner, game badge, compteur de strats.
+---
+
+import MapCard from '../../../components/clutch/MapCard.tsx';
+
+Carte de map. 268×220px, zone image (HUD corner + game badge en overlay + nom de map) puis zone info (nom, strats, bouton Ouvrir). Bordure lime caractéristique.
+
+## Aperçu live
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', padding: '24px', background: '#f6f6f8' }}>
+  <MapCard map={{ name: 'Ascent' }} game="valorant" stratsCount={4} client:load />
+  <MapCard map={{ name: 'Mirage' }} game="csgo" stratsCount={7} client:load />
+</div>
+
+## Specs
+
+| Élément       | Valeur                                                  |
+| ------------- | ------------------------------------------------------- |
+| Conteneur     | 268×220px · fond #fff · **bordure 1px lime** · radius 0 |
+| Image (h160)  | object-cover · opacity overlay · shadow                 |
+| HUD corner    | 12×12px · bordure 2px ink 40 % · top/left 8             |
+| Game badge    | overlay top/right (variante onImage)                    |
+| Nom (image)   | SG Bold 24px clair · ombré                              |
+| Info (h60)    | fond ink 3 % · nom SG Bold 14 + « N strats sauvegardées » |
+| Bouton Ouvrir | fond violet 10 % · bordure ink 40 % · SG Bold 11 violet |
+
+## Props
+
+```ts
+map: { name: string; image?: string }
+game: 'csgo' | 'r6' | 'valorant' | 'novacore'
+stratsCount: number
+onOpen?: () => void
+```
+
+## Usage
+
+Sans `image`, un dégradé sombre de remplacement est utilisé. Le bouton « Ouvrir » mène au tactical board de la map.
