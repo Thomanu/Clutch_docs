@@ -1,0 +1,39 @@
+---
+title: Bracket Match
+description: Cellule de match dans un bracket — gagnant lime, perdant rouge, état live.
+---
+
+import BracketMatch from '../../../components/clutch/BracketMatch.tsx';
+
+Cellule de match d'un bracket. Deux slots (équipe + score) séparés par un filet. Gagnant = teinte lime + accent gauche, perdant = teinte rouge atténuée. État `live` = pill rouge + slots violet.
+
+## Aperçu live
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', padding: '32px 24px', background: '#f6f6f8' }}>
+  <BracketMatch state="default" teams={[{ name: 'Nova', score: 13, winner: true }, { name: 'Apex', score: 7 }]} client:load />
+  <BracketMatch state="live" teams={[{ name: 'Vortex', score: 9 }, { name: 'Titan', score: 11 }]} client:load />
+</div>
+
+## Specs
+
+| Élément        | Valeur                                                  |
+| -------------- | ------------------------------------------------------- |
+| Slot           | 220×52px · px14 · gap10 · nom SG Medium 13 · score SG Bold 18 |
+| Séparateur     | 1px ink 5 %                                             |
+| Default gagnant| fond lime 10 % · accent gauche 3px lime                 |
+| Default perdant| fond error 10 % · opacity 0.55 · score rouge            |
+| Live pill      | fond **#fe3939** (rouge unique) · dot 5px · « LIVE »    |
+| Live slots     | fond violet 8 % · bordure violet 30 % · scores encre    |
+
+Le rouge `#ff3b5c` du Figma est harmonisé vers `#fe3939`.
+
+## Props
+
+```ts
+state?: 'default' | 'live'
+teams: [{ name, score, winner? }, { name, score, winner? }]
+```
+
+## Usage
+
+Brique d'un arbre de bracket. Le `winner: true` colore le slot gagnant. `live` signale le match en cours.

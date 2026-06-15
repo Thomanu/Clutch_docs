@@ -1,0 +1,54 @@
+---
+title: Notification Item
+description: Ligne de notification — non lue (violet) / lue, tags, actions.
+---
+
+import NotificationItem from '../../../components/clutch/NotificationItem.tsx';
+
+Ligne de notification. **Non lue** = fond violet 6 % + accent gauche violet + icône ◆ ; **lue** = atténuée + icône ✓. Tags et actions visibles sur les non lues.
+
+## Aperçu live
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '24px', background: '#f6f6f8' }}>
+  <NotificationItem
+    title="Invitation à un scrim"
+    body="Nova Esports t'invite à un scrim Valorant ce soir à 21:00."
+    timestamp="il y a 5 min"
+    tags={['VALORANT', 'SCRIM']}
+    actions={[{ label: 'Accepter', primary: true }, { label: 'Refuser' }]}
+    client:load
+  />
+  <NotificationItem
+    read
+    title="Check-in validé"
+    body="Ton inscription au tournoi NOVA CUP #4 est confirmée."
+    timestamp="il y a 2 h"
+    client:load
+  />
+</div>
+
+## Specs
+
+| Propriété  | Valeur                                                  |
+| ---------- | ------------------------------------------------------- |
+| Conteneur  | largeur 1072px · px20 py16 · gap16 · radius 0           |
+| Unread     | fond violet 6 % · bordure violet 20 % · accent gauche 3px violet |
+| Read       | fond ink 2 % · bordure ink 5 % · opacity 0.7            |
+| Icône 40px | unread ◆ violet · read ✓ vert (success)                 |
+| Titre      | SG Bold 14 · horodatage SG 11 ink 35 %                  |
+| Corps      | SG 13 ink 60 %                                          |
+| Tags       | px8 py3 · SG Bold 9 · tracking 0.8                       |
+| Actions    | CTA h32 violet + bouton « ⋮ » 28px                      |
+
+## Props
+
+```ts
+read?: boolean
+title, body, timestamp: string
+tags?: string[]
+actions?: { label: string; primary?: boolean }[]
+```
+
+## Usage
+
+Les tags et actions ne s'affichent que sur les notifications **non lues**. L'icône et le fond signalent l'état lu/non lu d'un coup d'œil.

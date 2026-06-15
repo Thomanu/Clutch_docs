@@ -1,0 +1,56 @@
+---
+title: Empty State
+description: Écran vide — code badge, hero icon HUD, stats teaser, double CTA.
+---
+
+import EmptyState from '../../../components/clutch/EmptyState.tsx';
+
+Écran vide très orné (coins HUD, glow). Code badge encadré, hero icon, titre hero, teaser de stats, double CTA. **Le CTA principal est violet** (arbitrage : violet = CTA), le secondaire en ghost.
+
+## Aperçu live
+
+<div style={{ padding: '24px', background: '#f6f6f8' }}>
+  <EmptyState
+    eyebrow="Aucun tournoi"
+    title="RIEN À L'HORIZON"
+    description="Aucun tournoi ne correspond à tes filtres. Lance le tien ou explore l'Arena."
+    icon="◇"
+    accent="error"
+    stats={[
+      { value: '128', label: 'Joueurs en ligne', accent: 'violet' },
+      { value: '12', label: 'Tournois ce mois', accent: 'lime' },
+      { value: '4', label: 'Scrims ouverts' },
+    ]}
+    primaryCta={{ label: 'Créer un tournoi' }}
+    secondaryCta={{ label: 'Explorer' }}
+    hint="ou rejoins un tournoi existant"
+    client:load
+  />
+</div>
+
+## Specs
+
+| Élément       | Valeur                                                     |
+| ------------- | ---------------------------------------------------------- |
+| Conteneur     | col · gap32 · p40 · w560 · centré                          |
+| Code badge    | filet + eyebrow SG Bold 11 (tracking 1.65) + filet         |
+| Hero icon     | 120px · tint d'accent + glow + 4 coins HUD                 |
+| Titre         | SG Bold 40px · tracking 2px                                |
+| Stats teaser  | 3 boîtes · valeur SG Bold 24 (violet / lime+glow / encre)  |
+| CTA           | **primaire violet** + secondaire ghost                     |
+| Hint          | filet + texte SG 13 + filet                                |
+
+## Props
+
+```ts
+eyebrow, title, description: string
+icon?: string · accent?: 'error' | 'violet' | 'lime'
+stats?: { value, label, accent? }[]
+primaryCta: { label, onClick? }
+secondaryCta?: { label, onClick? }
+hint?: string
+```
+
+## Usage
+
+`accent` colore le code badge et le hero icon (rouge par défaut pour un vide « bloquant »). Les valeurs lime des stats passent en encre + halo (lisibilité light mode).
