@@ -62,7 +62,7 @@ export default function NotificationItem({
       <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
           <span style={{ fontFamily: font.sans, fontWeight: fontWeight.bold, fontSize: 14, color: colors.ink }}>{title}</span>
-          <span style={{ fontFamily: font.sans, fontWeight: fontWeight.regular, fontSize: 11, color: 'rgba(26,25,28,.35)', flexShrink: 0 }}>
+          <span style={{ fontFamily: font.sans, fontWeight: fontWeight.regular, fontSize: 11, color: colors.inkAlpha60, flexShrink: 0 }}>
             {timestamp}
           </span>
         </div>

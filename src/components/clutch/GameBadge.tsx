@@ -30,7 +30,8 @@ export default function GameBadge({ game, onImage = false }: GameBadgeProps) {
     borderRadius: radius.none,
     background: onImage ? 'rgba(26,25,28,.6)' : colors.lime10,
     border: `1px solid ${onImage ? 'rgba(255,255,255,.15)' : colors.lime40}`,
-    color: onImage ? colors.snow : colors.lime,
+    // light mode : texte en encre (le lime sur blanc est illisible) ; identité portée par le fond/bordure lime
+    color: onImage ? colors.snow : colors.ink,
     whiteSpace: 'nowrap',
   };
   return <span style={style}>{LABELS[game]}</span>;

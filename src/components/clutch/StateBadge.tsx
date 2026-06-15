@@ -19,10 +19,10 @@ export type StateBadgeProps = {
 /* texte = couleur de l'état (exception : enCours lime → ink illisible sinon) */
 const CONFIG: Record<ObjectState, { color: string; bg: string; text: string; label: string }> = {
   ouvert: { color: colors.success, bg: colors.success10, text: colors.success, label: 'OUVERT' },
-  complet: { color: colors.warning, bg: colors.warning10, text: colors.warning, label: 'COMPLET' },
+  complet: { color: colors.warning, bg: colors.warning10, text: colors.ink, label: 'COMPLET' },
   live: { color: colors.error, bg: colors.error10, text: colors.error, label: 'LIVE' },
   ferme: { color: colors.inkAlpha40, bg: colors.inkAlpha04, text: colors.inkAlpha60, label: 'FERMÉ' },
-  enAttente: { color: colors.warning, bg: colors.warning10, text: colors.warning, label: 'EN ATTENTE' },
+  enAttente: { color: colors.warning, bg: colors.warning10, text: colors.ink, label: 'EN ATTENTE' },
   confirme: { color: colors.success, bg: colors.success10, text: colors.success, label: 'CONFIRMÉ' },
   enCours: { color: colors.lime, bg: colors.lime15, text: colors.ink, label: 'EN COURS' },
   aVenir: { color: colors.inkAlpha40, bg: colors.inkAlpha04, text: colors.inkAlpha60, label: 'À VENIR' },

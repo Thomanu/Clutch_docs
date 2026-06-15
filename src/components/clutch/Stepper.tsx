@@ -61,7 +61,7 @@ export default function Stepper({ currentStep, steps }: StepperProps) {
                 fontSize: 9,
                 letterSpacing: '0.5px',
                 textTransform: 'uppercase',
-                color: i + 1 <= currentStep ? colors.ink : colors.inkAlpha40,
+                color: i + 1 <= currentStep ? colors.ink : colors.inkAlpha60,
               }}
             >
               {label}

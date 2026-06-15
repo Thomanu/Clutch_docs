@@ -26,7 +26,7 @@ export default function Tab({ label, count, active = false, onClick }: TabProps)
     fontSize: 11,
     letterSpacing: '0.5px',
     textTransform: 'uppercase',
-    color: active ? colors.ink : hover ? colors.inkAlpha60 : colors.inkAlpha40,
+    color: active || hover ? colors.ink : colors.inkAlpha60,
     cursor: 'pointer',
     whiteSpace: 'nowrap',
     transition: 'color 120ms ease',

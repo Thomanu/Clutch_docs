@@ -121,7 +121,23 @@ export default function PlayerRow({
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
           <span style={{ fontFamily: font.sans, fontWeight: fontWeight.bold, fontSize: 14, color: colors.ink }}>{name}</span>
           {captain && (
-            <span style={{ fontFamily: font.sans, fontWeight: fontWeight.bold, fontSize: 16, color: colors.lime, WebkitTextStroke: '0.5px rgba(26,25,28,.5)' }} title="Capitaine">
+            <span
+              title="Capitaine"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 16,
+                height: 16,
+                background: colors.lime,
+                color: colors.ink,
+                fontFamily: font.sans,
+                fontWeight: fontWeight.bold,
+                fontSize: 11,
+                lineHeight: 1,
+                borderRadius: radius.none,
+              }}
+            >
               C
             </span>
           )}
