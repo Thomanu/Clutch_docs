@@ -1,0 +1,38 @@
+---
+title: Stepper
+description: Indicateur d'étapes — carrés 36px, étape active/complétée en lime + glow.
+---
+
+import Stepper from '../../../components/clutch/Stepper.tsx';
+
+Indicateur d'étapes (ex. création de tournoi). Carrés 36px (radius 0), étapes complétées/active en **lime** avec glow violet sur l'active. Connecteurs lime quand franchis.
+
+## Aperçu live
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '32px', padding: '32px 24px', background: '#f6f6f8' }}>
+  <Stepper currentStep={1} steps={['Infos', 'Format', 'Équipes']} client:load />
+  <Stepper currentStep={2} steps={['Infos', 'Format', 'Équipes']} client:load />
+  <Stepper currentStep={3} steps={['Infos', 'Format', 'Équipes']} client:load />
+</div>
+
+## Specs
+
+| Élément             | Valeur                                       |
+| ------------------- | -------------------------------------------- |
+| Layout              | col gap 8 · steps row                        |
+| Step (carré)        | 36×36px · radius 0                           |
+| Connecteur          | 2px × 48px                                   |
+| Complété / actif    | fond lime · bordure lime · numéro ink ; actif = glow violet |
+| Inactif             | fond ink 4 % · bordure ink 10 % · numéro ink 60 % |
+| Labels              | SG Bold 9px UPPERCASE · largeur 36 · centrés |
+
+## Props
+
+```ts
+currentStep: number   // 1-based
+steps: string[]        // labels
+```
+
+## Usage
+
+Étape `< currentStep` = complétée (lime), `= currentStep` = active (lime + glow), `> currentStep` = à faire (grisée).
