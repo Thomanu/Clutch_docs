@@ -5,7 +5,7 @@ description: Navigation latérale principale — 256px, logo, profil, nav, widge
 
 import Sidebar from '../../../components/clutch/Sidebar.tsx';
 
-Navigation latérale fixe de Clutch. Présente sur tous les écrans connectés en Desktop. 11 variants sur 4 axes.
+Navigation latérale principale de Clutch — barre verticale fixe de 256px regroupant logo, profil utilisateur, recherche, navigation, widget de prochain match et footer serveur. Présente sur tous les écrans connectés en Desktop. **11 variants** sur 4 axes. Toutes les instances maquette (37 sidebars) sont liées au set `2202:2`.
 
 ## Aperçu live — Expanded / Theme Purple
 
@@ -23,10 +23,16 @@ Navigation latérale fixe de Clutch. Présente sur tous les écrans connectés e
   />
 </div>
 
-## Aperçu live — Collapsed / Theme Lime
+## Aperçu live — Expanded / Theme Lime
 
 <div style={{ display: 'flex', gap: '32px', padding: '32px 24px', background: '#f6f6f8', flexWrap: 'wrap' }}>
-  <Sidebar activePage="arena" theme="lime" size="collapsed" auth="loggedIn" client:load />
+  <Sidebar activePage="arena" theme="lime" size="expanded" auth="loggedIn" serverName="Clutch FR #1" client:load />
+</div>
+
+## Aperçu live — Collapsed
+
+<div style={{ display: 'flex', gap: '32px', padding: '32px 24px', background: '#f6f6f8', flexWrap: 'wrap' }}>
+  <Sidebar activePage="squadhub" theme="purple" size="collapsed" auth="loggedIn" client:load />
 </div>
 
 ## Aperçu live — LoggedOut
@@ -37,25 +43,23 @@ Navigation latérale fixe de Clutch. Présente sur tous les écrans connectés e
 
 ## Variants
 
-| Axe   | Valeurs                                                                       |
-| ----- | ----------------------------------------------------------------------------- |
-| State | default · dashboard · squadhub · tacticalboard · arena · monprofil · notifications · aide |
-| Size  | expanded (256px) · collapsed (64px)                                           |
-| Auth  | loggedIn · loggedOut                                                          |
-| Theme | purple · lime                                                                 |
+| Axe                 | Valeurs                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------ |
+| State (page active) | Default · Dashboard · SquadHub · TacticalBoard · Arena · MonProfil · Notifications · Aide |
+| Size                | Expanded · Collapsed                                                                       |
+| Auth                | LoggedIn · LoggedOut                                                                       |
+| Theme               | Purple · Lime                                                                              |
 
-## Specs
+## Spécifications clés
 
-| Élément           | Valeur                                                       |
-| ----------------- | ------------------------------------------------------------ |
-| Largeur Expanded  | 256px                                                        |
-| Largeur Collapsed | 64px                                                         |
-| Fond              | `#16151a` (contextual dark)                                  |
-| Bordure droite    | 1px ink 20%                                                  |
-| Item de menu      | icône 24px · Body/M/Regular · padding 12px H                 |
-| Item actif        | fond accent 8% · bordure gauche 2px accent · texte semibold  |
-| Séparateur        | 1px ink 20%                                                  |
-| Auth=LoggedOut    | bloc profil → CTA de connexion                               |
+- Largeur **256px** (Expanded) · fond `clutch-color-contextual-100` · bordure droite 1px `clutch-color-primary-20`.
+- **Logo CLUTCH** : Alexandria Black, underline gradient violet, rotation −4.5°.
+- **Items de menu** : icône 24px + `Body/M/Regular` · padding 12px H · séparateur `primary-20`.
+- **Auth=LoggedOut** : le bloc profil est remplacé par un CTA de connexion.
+
+## Tokens
+
+`clutch-color-contextual-100` (fond) · `clutch-color-primary-100/60/20` (textes, séparateurs) · `clutch-color-secondary-100` (Theme Purple, item actif) · `clutch-color-lime-100` (Theme Lime, item actif) · `brick-spacing-s` · `clutch-spacing-m`.
 
 ## Props
 
@@ -73,7 +77,12 @@ serverName?: string
 
 ## Usage
 
-- Toujours appliquer le bon `activePage` pour marquer la page active dans la navigation.
-- Utiliser `auth="loggedOut"` sur les écrans publics (landing, connexion).
-- `size="collapsed"` pour les vues où la navigation doit s'effacer au profit du contenu.
-- Ne pas modifier l'ordre des items de navigation par écran — il est global et cohérent.
+**À faire**
+- Toujours appliquer le bon `State` pour marquer la page active dans la navigation.
+- Utiliser `Auth=LoggedOut` sur les écrans publics (landing, connexion).
+- `Size=Collapsed` pour les vues où la navigation doit s'effacer au profit du contenu.
+
+**À éviter**
+- Modifier l'ordre des items de navigation sur un écran particulier — il est global et cohérent.
+- Détacher l'instance ou modifier la Sidebar directement depuis un écran maquette.
+- Éditer le doublon de la page « Design System » (supprimé — seul `2202:2` est canonique).
