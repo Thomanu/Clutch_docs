@@ -3,35 +3,29 @@ title: Progress Bar
 description: Barre de progression — piste fine, remplissage dégradé violet → lime.
 ---
 
-import ProgressBar from '../../../components/clutch/ProgressBar.tsx';
+Barre de progression. Piste 4px (ink 10%), remplissage en **dégradé horizontal violet → lime**, radius 0. Utilisée dans Tournament Row (Z3 Teams) et les états de chargement.
 
-Barre de progression. Piste 4px (ink 10 %), remplissage en **dégradé horizontal violet → lime**, radius 0.
+## Aperçu
 
-## Aperçu live
-
-<div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '24px', background: '#f6f6f8' }}>
-  <ProgressBar value={25} client:load />
-  <ProgressBar value={60} client:load />
-  <ProgressBar value={90} client:load />
-  <ProgressBar value={75} height={8} client:load />
-</div>
+<img src="/images/composants/progress-bar.png" alt="Progress Bar — différentes valeurs et hauteurs" style="width:100%;border:1px solid rgba(26,25,28,.08)" />
 
 ## Specs
 
-| Élément      | Valeur                                   |
-| ------------ | ---------------------------------------- |
-| Piste        | hauteur 4px · fond ink 10 % · radius 0    |
-| Remplissage  | dégradé violet #683EF6 → lime #C6FF33     |
-| Largeur fill | = % de progression                       |
+| Élément     | Valeur                                 |
+| ----------- | -------------------------------------- |
+| Piste       | hauteur 4px · fond ink 10% · radius 0  |
+| Remplissage | dégradé violet #683EF6 → lime #C6FF33  |
+| Largeur fill| proportionnelle à `value` (0–100)      |
+| aria        | `role="progressbar"` · `aria-valuenow` |
 
 ## Props
 
 ```ts
-value: number      // 0–100 (clampé)
-height?: number    // défaut 4
+value: number         // 0–100 (clampé automatiquement)
+height?: number       // défaut 4
 width?: number | string  // défaut '100%'
 ```
 
 ## Usage
 
-Pour une progression déterminée (remplissage d'équipes, étapes, upload). La valeur est bornée automatiquement entre 0 et 100.
+Pour une progression déterminée (remplissage d'équipes, étapes, upload). La valeur est bornée automatiquement entre 0 et 100. Pour un loading indéterminé, utiliser le Spinner du composant Button.

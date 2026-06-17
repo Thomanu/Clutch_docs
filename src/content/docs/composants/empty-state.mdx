@@ -3,54 +3,38 @@ title: Empty State
 description: Écran vide — code badge, hero icon HUD, stats teaser, double CTA.
 ---
 
-import EmptyState from '../../../components/clutch/EmptyState.tsx';
+Écran vide orné (coins HUD, glow). Code badge encadré, hero icon, titre hero, teaser de stats, double CTA. **Le CTA principal est violet** (arbitrage : violet = CTA), le secondaire en ghost.
 
-Écran vide très orné (coins HUD, glow). Code badge encadré, hero icon, titre hero, teaser de stats, double CTA. **Le CTA principal est violet** (arbitrage : violet = CTA), le secondaire en ghost.
+## Aperçu
 
-## Aperçu live
-
-<div style={{ padding: '24px', background: '#f6f6f8' }}>
-  <EmptyState
-    eyebrow="Aucun tournoi"
-    title="RIEN À L'HORIZON"
-    description="Aucun tournoi ne correspond à tes filtres. Lance le tien ou explore l'Arena."
-    icon="◇"
-    accent="error"
-    stats={[
-      { value: '128', label: 'Joueurs en ligne', accent: 'violet' },
-      { value: '12', label: 'Tournois ce mois', accent: 'lime' },
-      { value: '4', label: 'Scrims ouverts' },
-    ]}
-    primaryCta={{ label: 'Créer un tournoi' }}
-    secondaryCta={{ label: 'Explorer' }}
-    hint="ou rejoins un tournoi existant"
-    client:load
-  />
-</div>
+<img src="/images/composants/empty-state.png" alt="Empty State — variantes accent error, violet, lime" style="width:100%;border:1px solid rgba(26,25,28,.08)" />
 
 ## Specs
 
-| Élément       | Valeur                                                     |
-| ------------- | ---------------------------------------------------------- |
-| Conteneur     | col · gap32 · p40 · w560 · centré                          |
-| Code badge    | filet + eyebrow SG Bold 11 (tracking 1.65) + filet         |
-| Hero icon     | 120px · tint d'accent + glow + 4 coins HUD                 |
-| Titre         | SG Bold 40px · tracking 2px                                |
-| Stats teaser  | 3 boîtes · valeur SG Bold 24 (violet / lime+glow / encre)  |
-| CTA           | **primaire violet** + secondaire ghost                     |
-| Hint          | filet + texte SG 13 + filet                                |
+| Élément      | Valeur                                                    |
+| ------------ | --------------------------------------------------------- |
+| Conteneur    | col · gap 32 · p40 · w560 · centré                        |
+| Code badge   | filet + eyebrow SG Bold 11px (tracking 1.65) + filet      |
+| Hero icon    | 120px · tint d'accent + glow + 4 coins HUD                |
+| Titre        | SG Bold 40px · tracking 2px                               |
+| Stats teaser | 3 boîtes · valeur SG Bold 24px (violet / lime+glow / ink) |
+| CTA          | **primaire violet** + secondaire ghost                    |
+| Hint         | filet + texte SG 13px + filet                             |
 
 ## Props
 
 ```ts
-eyebrow, title, description: string
-icon?: string · accent?: 'error' | 'violet' | 'lime'
-stats?: { value, label, accent? }[]
-primaryCta: { label, onClick? }
-secondaryCta?: { label, onClick? }
+eyebrow: string
+title: string
+description: string
+icon?: string
+accent?: 'error' | 'violet' | 'lime'
+stats?: { value: string; label: string; accent?: string }[]
+primaryCta: { label: string; onClick?: () => void }
+secondaryCta?: { label: string; onClick?: () => void }
 hint?: string
 ```
 
 ## Usage
 
-`accent` colore le code badge et le hero icon (rouge par défaut pour un vide « bloquant »). Les valeurs lime des stats passent en encre + halo (lisibilité light mode).
+`accent` colore le code badge et le hero icon — rouge pour un vide « bloquant », lime pour un vide « positif » (ex. aucun résultat mais invitation à créer), violet pour un vide neutre.

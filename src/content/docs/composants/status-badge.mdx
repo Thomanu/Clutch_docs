@@ -3,33 +3,27 @@ title: Status Badge
 description: Présence d'un joueur — En ligne, Absent, Hors ligne. Pastille + label.
 ---
 
-import StatusBadge from '../../../components/clutch/StatusBadge.tsx';
+Indique la **présence d'un joueur**. Pastille colorée 8px + bordure de la couleur du statut + fond teinté. Le texte reste en encre pour rester lisible en light mode.
 
-Indique la **présence d'un joueur**. Pastille colorée 8px + bordure de la couleur du statut + fond teinté ; le texte reste en encre pour rester lisible en light mode.
+## Aperçu
 
-## Aperçu live
-
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center', padding: '24px', background: '#f6f6f8' }}>
-  <StatusBadge status="online" client:load />
-  <StatusBadge status="away" client:load />
-  <StatusBadge status="offline" client:load />
-</div>
+<img src="/images/composants/badge.png" alt="Badges — Game Badge, Status Badge, State Badge" style="width:100%;border:1px solid rgba(26,25,28,.08)" />
 
 ## Specs
 
-| Propriété | Valeur                       |
-| --------- | ---------------------------- |
-| Padding   | H 8px · V 4px · gap 6px       |
-| Pastille  | 8×8px                        |
-| Texte     | Space Grotesk Bold 12/25      |
-| Bordure   | 1px (couleur du statut)       |
-| Radius    | 0                            |
+| Propriété | Valeur                      |
+| --------- | --------------------------- |
+| Padding   | H 8px · V 4px · gap 6px     |
+| Pastille  | 8×8px · radius 0            |
+| Texte     | Space Grotesk Bold 12px     |
+| Bordure   | 1px (couleur du statut)     |
+| Radius    | 0                           |
 
-| Statut    | Couleur            | Fond           |
-| --------- | ------------------ | -------------- |
-| online    | lime #C6FF33       | lime ~8 %      |
-| away      | warning #f5a524    | warning ~10 %  |
-| offline   | ink 40 %           | ink ~4 %       |
+| Statut  | Couleur         | Fond          |
+| ------- | --------------- | ------------- |
+| online  | lime #C6FF33    | lime ~8%      |
+| away    | warning #f5a524 | warning ~10%  |
+| offline | ink 40%         | ink ~4%       |
 
 ## Props
 
@@ -40,4 +34,4 @@ label?: string  // défaut = libellé FR du statut
 
 ## Usage
 
-Sert à la **présence** uniquement. La pastille de statut se retrouve aussi en overlay sur l'**Avatar**.
+Sert à la **présence** uniquement. La pastille de statut se retrouve aussi en overlay sur l'**Avatar** (composant dédié).

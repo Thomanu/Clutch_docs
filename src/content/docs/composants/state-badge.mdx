@@ -3,42 +3,31 @@ title: State Badge
 description: État d'un objet (tournoi, match, inscription) — 8 états sémantiques.
 ---
 
-import StateBadge from '../../../components/clutch/StateBadge.tsx';
+Indique l'**état d'un objet** (tournoi, match, inscription). Texte 10px UPPERCASE, bordure de la couleur de l'état, fond teinté. Radius forcé à 0.
 
-Indique l'**état d'un objet** (tournoi, match, inscription). Texte 10px UPPERCASE, bordure de la couleur de l'état, fond teinté. Radius forcé à 0 (Figma : 2px).
+## Aperçu
 
-## Aperçu live
-
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center', padding: '24px', background: '#f6f6f8' }}>
-  <StateBadge state="ouvert" client:load />
-  <StateBadge state="complet" client:load />
-  <StateBadge state="live" client:load />
-  <StateBadge state="ferme" client:load />
-  <StateBadge state="enAttente" client:load />
-  <StateBadge state="confirme" client:load />
-  <StateBadge state="enCours" client:load />
-  <StateBadge state="aVenir" client:load />
-</div>
+<img src="/images/composants/badge.png" alt="Badges — Game Badge, Status Badge, State Badge" style="width:100%;border:1px solid rgba(26,25,28,.08)" />
 
 ## Specs
 
-| Propriété | Valeur                        |
-| --------- | ----------------------------- |
-| Padding   | H 10px · V 4px                |
+| Propriété | Valeur                              |
+| --------- | ----------------------------------- |
+| Padding   | H 10px · V 4px                      |
 | Texte     | Space Grotesk Bold 10px · UPPERCASE |
-| Bordure   | 1px (couleur de l'état)        |
-| Radius    | 0                             |
+| Bordure   | 1px (couleur de l'état)             |
+| Radius    | 0                                   |
 
-| État        | Couleur          |
-| ----------- | ---------------- |
-| ouvert      | success #388e3c  |
-| complet     | warning #f5a524  |
-| live        | error #fe3939    |
-| ferme       | ink 40 %         |
-| enAttente   | warning #f5a524  |
-| confirme    | success #388e3c  |
-| enCours     | lime #C6FF33     |
-| aVenir      | ink 40 %         |
+| État      | Couleur          |
+| --------- | ---------------- |
+| ouvert    | success #388e3c  |
+| complet   | warning #f5a524  |
+| live      | error #fe3939    |
+| ferme     | ink 40%          |
+| enAttente | warning #f5a524  |
+| confirme  | success #388e3c  |
+| enCours   | lime #C6FF33     |
+| aVenir    | ink 40%          |
 
 ## Props
 

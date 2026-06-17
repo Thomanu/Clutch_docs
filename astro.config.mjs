@@ -46,6 +46,7 @@ export default defineConfig({
             { label: 'Modal', link: '/composants/modal/' },
             { label: 'Empty State', link: '/composants/empty-state/' },
             { label: 'Sidebar', link: '/composants/sidebar/' },
+            { label: 'Top Bar', link: '/composants/top-bar/' },
           ],
         },
       ],

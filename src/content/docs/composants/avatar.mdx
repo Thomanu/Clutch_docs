@@ -3,28 +3,11 @@ title: Avatar
 description: Photo de profil — 4 tailles, carré (radius 0), pastille de statut optionnelle.
 ---
 
-import Avatar from '../../../components/clutch/Avatar.tsx';
+Photo de profil. **Carré, jamais circulaire** (radius 0) — arbitrage brutalisme Clutch. Pastille de statut optionnelle en overlay bas-droite. Sans `src`, affiche les initiales déduites de `alt`.
 
-Photo de profil. **Carré, jamais circulaire** (radius 0, arbitrage brutalisme) — contrairement au Figma qui rendait circulaire. Pastille de statut optionnelle en overlay bas-droite.
+## Aperçu
 
-## Aperçu live
-
-### Tailles
-
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'flex-end', padding: '24px', background: '#f6f6f8' }}>
-  <Avatar size="sm" alt="Nova Player" client:load />
-  <Avatar size="md" alt="Nova Player" client:load />
-  <Avatar size="lg" alt="Nova Player" client:load />
-  <Avatar size="xl" alt="Nova Player" client:load />
-</div>
-
-### Avec statut
-
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', alignItems: 'flex-end', padding: '24px', background: '#f6f6f8' }}>
-  <Avatar size="lg" alt="On Line" status="online" client:load />
-  <Avatar size="lg" alt="A Way" status="away" client:load />
-  <Avatar size="lg" alt="Off Line" status="offline" client:load />
-</div>
+<img src="/images/composants/avatar.png" alt="Avatar — 4 tailles et 3 statuts" style="width:100%;border:1px solid rgba(26,25,28,.08)" />
 
 ## Specs
 
@@ -35,16 +18,19 @@ Photo de profil. **Carré, jamais circulaire** (radius 0, arbitrage brutalisme) 
 | lg   | 40×40px    | 0      |
 | xl   | 64×64px    | 0      |
 
-Bordure 1px ink 40 %. Pastille de statut 10px (sur L) avec contour blanc.
+- Bordure 1px ink 40%.
+- Pastille de statut 10×10px · overlay bas-droite · contour 2px blanc.
+- Couleurs pastille : online = lime · away = warning · offline = ink 40%.
 
 ## Props
 
 ```ts
-size?: 'sm' | 'md' | 'lg' | 'xl'   // défaut 'md'
-src?, alt?: string
+size?: 'sm' | 'md' | 'lg' | 'xl'  // défaut 'md'
+src?: string
+alt?: string
 status?: 'online' | 'away' | 'offline'
 ```
 
 ## Usage
 
-Sans `src`, l'avatar affiche les initiales déduites de `alt`. La pastille reprend la couleur du **Status Badge** correspondant.
+La pastille reprend la couleur du **Status Badge** correspondant. Ne jamais appliquer un `border-radius` — le carré est une règle absolue du DS Clutch.
