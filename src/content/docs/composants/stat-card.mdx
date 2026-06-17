@@ -3,72 +3,83 @@ title: Stat Card
 description: Carte de statistique joueur — 2 tailles, 2 accents (lime/violet), 3 tendances.
 ---
 
-import StatCard from '../../../components/clutch/StatCard.tsx';
+Carte de statistique joueur/équipe — affiche une métrique clé (grand chiffre + glow, badge de tendance, sparkline) sur les dashboards et profils. **12 variants** sur 3 axes indépendants. Deux tailles : Default 268×128px et Compact 224×104px.
 
-Carte de statistique joueur/équipe. 12 variants sur 3 axes : Tendance · Accent · Size.
-Deux tailles : **Default** 268×128px et **Compact** 224×104px.
+## Aperçu
 
-## Aperçu live — Default
+<img src="/images/composants/stat-card.png" alt="Stat Card — toutes les variantes Tendance × Accent × Size" style="width:100%;border:1px solid rgba(26,25,28,.08)" />
 
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', padding: '32px 24px', background: '#f6f6f8' }}>
-  <StatCard value="68%" label="Taux de victoire" delta="+5%" tendance="hausse" accent="lime" client:load />
-  <StatCard value="1.24" label="Ratio K/D" delta="+0.12" tendance="hausse" accent="violet" client:load />
-  <StatCard value="342" label="Matchs joués" delta="-8" tendance="baisse" client:load />
-  <StatCard value="12" label="Tournois gagnés" tendance="neutre" delta="0" client:load />
-</div>
+## Variants
 
-## Aperçu live — Compact
+| Axe      | Valeurs                   |
+| -------- | ------------------------- |
+| Tendance | Hausse · Baisse · Neutre  |
+| Accent   | Lime · Violet             |
+| Size     | Default · Compact         |
 
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', padding: '32px 24px', background: '#f6f6f8' }}>
-  <StatCard value="68%" label="Victoires" delta="+5%" tendance="hausse" accent="lime" size="compact" client:load />
-  <StatCard value="1.24" label="K/D Ratio" delta="+0.12" tendance="hausse" accent="violet" size="compact" client:load />
-  <StatCard value="342" label="Matchs" size="compact" client:load />
-</div>
+## Propriétés (instance overrides)
+
+| Propriété        | Type    | Description                                      |
+| ---------------- | ------- | ------------------------------------------------ |
+| Valeur           | TEXT    | Grand chiffre affiché (ex. `47`, `68%`, `124h`)  |
+| Libellé          | TEXT    | Nom de la métrique (ex. `MATCHS JOUÉS`)          |
+| Delta            | TEXT    | Variation (ex. `+12%`, `-3`)                     |
+| Tendance visible | BOOLEAN | Affiche/masque le badge de tendance              |
+| Sparkline visible| BOOLEAN | Affiche/masque la barre dégradée en bas          |
+| Icône visible    | BOOLEAN | Affiche/masque l'icône carré accent              |
+
+## Anatomie
+
+1. **Header** : icône optionnelle (carré accent teinté 16%) à gauche + badge Tendance à droite.
+2. **Value** : SG Bold 40px (Default) / 28px (Compact), couleur accent + effet glow.
+3. **Label** : SG Regular 12px (Default) / 11px (Compact), ink 60%, UPPERCASE.
+4. **Sparkline** : rectangle en bas, 6px (Default) / 5px (Compact), gradient violet→accent.
+
+## Mapping Tendance → visuel
+
+| Tendance | Couleur badge   | Flèche | Delta   |
+| -------- | --------------- | ------ | ------- |
+| Hausse   | Accent          | ▲      | Positif |
+| Baisse   | Rouge error     | ▼      | Négatif |
+| Neutre   | ink 40%         | —      | `0`/`0%`|
 
 ## Specs
 
-| Axe      | Valeurs                          |
-| -------- | -------------------------------- |
-| Tendance | Hausse · Baisse · Neutre         |
-| Accent   | Lime · Violet                    |
-| Size     | Default (268×128px) · Compact (224×104px) |
-
-| Élément     | Default                      | Compact                      |
-| ----------- | ---------------------------- | ---------------------------- |
-| Dimensions  | 268×128px                    | 224×104px                    |
-| Padding     | 20px t/l/r · 16px b          | 16px t/l/r · 12px b          |
-| Valeur      | SG Bold **40px**             | SG Bold **28px**             |
-| Label       | SG Regular **12px** UPPERCASE | SG Regular **11px** UPPERCASE |
-| Sparkline   | **6px** gradient violet→accent | **5px** gradient violet→accent |
-| Trend badge | fond teinté 16% · bordure accent | idem |
-
-## Mapping Tendance
-
-| Tendance | Couleur badge | Flèche | Delta     |
-| -------- | ------------- | ------ | --------- |
-| Hausse   | Accent        | ▲      | Positif   |
-| Baisse   | Rouge error   | ▼      | Négatif   |
-| Neutre   | ink 40%       | —      | `0`/`0%`  |
+| Élément    | Default          | Compact          |
+| ---------- | ---------------- | ---------------- |
+| Dimensions | 268×128px        | 224×104px        |
+| Padding    | 20px t/l/r · 16px b | 16px t/l/r · 12px b |
+| Valeur     | SG Bold **40px** | SG Bold **28px** |
+| Label      | SG Regular **12px** | SG Regular **11px** |
+| Sparkline  | **6px**          | **5px**          |
+| Gap interne| 6px              | 6px              |
+| Radius     | 0px              | 0px              |
 
 ## Props
 
 ```ts
 value: string
 label: string
-delta?: string               // masque le badge si absent
-tendance?: 'hausse' | 'baisse' | 'neutre'   // défaut 'hausse'
-accent?: 'lime' | 'violet'                   // défaut 'lime'
-size?: 'default' | 'compact'                 // défaut 'default'
-showSparkline?: boolean                       // défaut true
-showIcon?: boolean                            // icône carré accent en haut gauche
+delta?: string                              // masque le badge si absent
+tendance?: 'hausse' | 'baisse' | 'neutre'  // défaut 'hausse'
+accent?: 'lime' | 'violet'                 // défaut 'lime'
+size?: 'default' | 'compact'               // défaut 'default'
+showSparkline?: boolean                    // défaut true
+showIcon?: boolean                         // défaut false
 ```
 
 ## Usage
 
+**À faire**
 - Grouper 3–4 Stat Cards en rangée dans les dashboards (grid gap 16px).
 - Choisir `size="compact"` dans les espaces contraints.
 - Toujours afficher un delta cohérent avec l'axe Tendance.
+- Activer `Graph=true` uniquement pour la métrique principale.
+
+**À éviter**
+- Mettre plus d'une métrique par carte.
+- Laisser `Tendance=Hausse` avec un delta négatif.
 
 :::note[Adaptation light mode]
-Dans le Figma (dark), le chiffre est en **accent plein**. Sur fond clair l'accent est illisible : on garde le **halo glow** comme signature mais le chiffre passe en **encre**. L'accent reste porté par la sparkline et le badge de tendance.
+Dans le Figma (dark), le chiffre est en accent plein. Sur fond clair l'accent est illisible : on garde le **halo glow** comme signature mais le chiffre passe en **encre**. L'accent reste porté par la sparkline et le badge de tendance.
 :::

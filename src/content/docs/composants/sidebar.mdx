@@ -3,43 +3,11 @@ title: Sidebar
 description: Navigation latérale principale — 256px, logo, profil, nav, widget prochain match, footer serveur.
 ---
 
-import Sidebar from '../../../components/clutch/Sidebar.tsx';
-
 Navigation latérale principale de Clutch — barre verticale fixe de 256px regroupant logo, profil utilisateur, recherche, navigation, widget de prochain match et footer serveur. Présente sur tous les écrans connectés en Desktop. **11 variants** sur 4 axes. Toutes les instances maquette (37 sidebars) sont liées au set `2202:2`.
 
-## Aperçu live — Expanded / Theme Purple
+## Aperçu
 
-<div style={{ display: 'flex', gap: '32px', padding: '32px 24px', background: '#f6f6f8', flexWrap: 'wrap' }}>
-  <Sidebar
-    activePage="dashboard"
-    theme="purple"
-    size="expanded"
-    auth="loggedIn"
-    username="xXClutchProXx"
-    userTag="#4892"
-    nextMatch={{ opponent: "Echo Rogue", time: "21:00", game: "VALORANT" }}
-    serverName="Clutch FR #1"
-    client:load
-  />
-</div>
-
-## Aperçu live — Expanded / Theme Lime
-
-<div style={{ display: 'flex', gap: '32px', padding: '32px 24px', background: '#f6f6f8', flexWrap: 'wrap' }}>
-  <Sidebar activePage="arena" theme="lime" size="expanded" auth="loggedIn" serverName="Clutch FR #1" client:load />
-</div>
-
-## Aperçu live — Collapsed
-
-<div style={{ display: 'flex', gap: '32px', padding: '32px 24px', background: '#f6f6f8', flexWrap: 'wrap' }}>
-  <Sidebar activePage="squadhub" theme="purple" size="collapsed" auth="loggedIn" client:load />
-</div>
-
-## Aperçu live — LoggedOut
-
-<div style={{ display: 'flex', gap: '32px', padding: '32px 24px', background: '#f6f6f8', flexWrap: 'wrap' }}>
-  <Sidebar theme="purple" size="expanded" auth="loggedOut" client:load />
-</div>
+<img src="/images/composants/sidebar.png" alt="Sidebar — tous les états page active, themes et auth" style="width:100%;border:1px solid rgba(26,25,28,.08)" />
 
 ## Variants
 
