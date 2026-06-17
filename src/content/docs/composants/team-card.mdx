@@ -1,40 +1,40 @@
----
+﻿---
 title: Team Card
-description: Carte d'équipe — état ouvert/fermé, jeu, membres, bouton voir l'équipe.
+description: Carte d'Ã©quipe â€” Ã©tat ouvert/fermÃ©, jeu, membres, bouton voir l'Ã©quipe.
 ---
 
 import TeamCard from '../../../components/clutch/TeamCard.tsx';
 
-Carte d'équipe. 544×156px, header (nom + badge d'état), info jeu/membres, footer bouton. Radius forcé à 0 (Figma : 4px).
+Carte d'Ã©quipe. 544Ã—156px, header (nom + badge d'Ã©tat), info jeu/membres, footer bouton. Radius forcÃ© Ã  0 (Figma : 4px).
 
-## Aperçu live
+## AperÃ§u live
 
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', padding: '24px', background: '#f6f6f8' }}>
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', padding: '24px', background: '#1a191c' }}>
   <TeamCard state="ouvert" name="Nova Esports" game="Valorant" members={{ current: 3, max: 5 }} client:load />
   <TeamCard state="ferme" name="Apex Predators" game="CS:GO" members={{ current: 5, max: 5 }} client:load />
 </div>
 
 ## Specs
 
-| Élément   | Valeur                                                |
+| Ã‰lÃ©ment   | Valeur                                                |
 | --------- | ----------------------------------------------------- |
-| Conteneur | 544×156px · fond ink 4 % · bordure 1px ink 10 % · radius 0 |
-| Header    | nom SG Bold 18 + badge d'état (px10 py4)              |
-| Badge     | ouvert = success #388e3c · fermé = ink 40 %           |
-| Info      | SG 14 · « jeu · current/max membres »                 |
-| Footer    | bouton « Voir l'équipe » SG Medium 14                 |
+| Conteneur | 544Ã—156px Â· fond ink 4 % Â· bordure 1px ink 10 % Â· radius 0 |
+| Header    | nom SG Bold 18 + badge d'Ã©tat (px10 py4)              |
+| Badge     | ouvert = success #388e3c Â· fermÃ© = ink 40 %           |
+| Info      | SG 14 Â· Â« jeu Â· current/max membres Â»                 |
+| Footer    | bouton Â« Voir l'Ã©quipe Â» SG Medium 14                 |
 
-Le vert `#33c766` du Figma est harmonisé vers `#388e3c` (success unique).
+Le vert `#33c766` du Figma est harmonisÃ© vers `#388e3c` (success unique).
 
 ## Props
 
 ```ts
 state?: 'ouvert' | 'ferme'
-name: string · game: string
+name: string Â· game: string
 members: { current: number; max: number }
 onView?: () => void
 ```
 
 ## Usage
 
-Pour présenter une équipe dans une grille. L'état `ouvert` (recrutement) utilise le vert succès harmonisé.
+Pour prÃ©senter une Ã©quipe dans une grille. L'Ã©tat `ouvert` (recrutement) utilise le vert succÃ¨s harmonisÃ©.

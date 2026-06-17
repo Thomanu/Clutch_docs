@@ -14,6 +14,12 @@ export default defineConfig({
       components: {
         ThemeSelect: './src/components/EmptyThemeSelect.astro',
       },
+      head: [
+        {
+          tag: 'script',
+          content: `(function(){try{document.documentElement.dataset.theme='dark';}catch(e){}})();`,
+        },
+      ],
       sidebar: [
         {
           label: 'Foundations',

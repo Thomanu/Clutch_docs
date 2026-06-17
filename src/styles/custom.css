@@ -1,108 +1,110 @@
 /* ---- POLICES (fichiers .ttf réellement présents dans public/fonts) ---- */
-/* Space Grotesk : UI, corps, chiffres */
 @font-face {
-    font-family: 'Space Grotesk';
-    src: url('/fonts/SpaceGrotesk-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Space Grotesk';
-    src: url('/fonts/SpaceGrotesk-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Space Grotesk';
-    src: url('/fonts/SpaceGrotesk-SemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Space Grotesk';
-    src: url('/fonts/SpaceGrotesk-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-display: swap;
-  }
-  /* Base Neue : gros titres (Wide Semi Bold 600, Expanded Bold 700, Expanded Extra Bold 800 + oblique) */
-  @font-face {
-    font-family: 'Base Neue';
-    src: url('/fonts/BaseNeueTrial-WideSemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Base Neue';
-    src: url('/fonts/BaseNeueTrial-ExpandedBold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Base Neue';
-    src: url('/fonts/BaseNeueTrial-ExpExtBd.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Base Neue';
-    src: url('/fonts/BaseNeueTrial-ExpExtBdObliq.ttf') format('truetype');
-    font-weight: 800;
-    font-style: italic;
-    font-display: swap;
-  }
-  
-  /* ---- TOKENS CLUTCH (light mode) ---- */
-  :root {
-    --clutch-violet: #683EF6;   /* CTA uniquement */
-    --clutch-lime:   #C6FF33;   /* success / records */
-    --clutch-ink:    #1a191c;   /* texte principal */
-  
-    --sl-color-accent:      var(--clutch-violet);
-    --sl-color-accent-low:  #e7ddff;
-    --sl-color-accent-high: #2a1a6b;
-  
-    --sl-color-white:     #1a191c;
-    --sl-color-gray-1:    #2a292d;
-    --sl-color-gray-2:    #45444a;
-    --sl-color-gray-3:    #6b6a70;
-    --sl-color-gray-4:    #9a99a0;
-    --sl-color-gray-5:    #c9c8cd;
-    --sl-color-gray-6:    #ededf0;
-    --sl-color-gray-7:    #f6f6f8;
-    --sl-color-black:     #ffffff;
-  
-    --sl-font: 'Space Grotesk', system-ui, sans-serif;
-    --sl-font-mono: 'Space Grotesk', monospace;
-  }
-  
-  :root[data-theme='dark'] { color-scheme: light; }
-  
-  /* ---- BRUTALISME : border-radius 0 partout ---- */
-  *, *::before, *::after { border-radius: 0 !important; }
-  
-  /* ---- TITRES en Base Neue ---- */
-  h1, h2, h3, h4,
-  .sl-markdown-content h1,
-  .sl-markdown-content h2,
-  .sl-markdown-content h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-  
-  /* ---- Signature : le slash "/" devant les h2 ---- */
-  .sl-markdown-content h2::before {
-    content: "/ ";
-    color: var(--clutch-violet);
-  }
+  font-family: 'Space Grotesk';
+  src: url('/fonts/SpaceGrotesk-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/SpaceGrotesk-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/SpaceGrotesk-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/SpaceGrotesk-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+/* Base Neue : gros titres */
+@font-face {
+  font-family: 'Base Neue';
+  src: url('/fonts/BaseNeueTrial-WideSemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Base Neue';
+  src: url('/fonts/BaseNeueTrial-ExpandedBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Base Neue';
+  src: url('/fonts/BaseNeueTrial-ExpExtBd.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Base Neue';
+  src: url('/fonts/BaseNeueTrial-ExpExtBdObliq.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
 
-  /* ---- Logo agrandi dans l'en-tête ---- */
-  :root { --sl-nav-height: 5rem; }
-  .site-title img {
-    height: 6.5rem !important;
-    width: auto !important;
-    padding: 0 !important;
-  }
+/* ---- TOKENS CLUTCH — dark mode natif ---- */
+:root,
+:root[data-theme='dark'],
+:root[data-theme='light'] {
+  color-scheme: dark;
+
+  --clutch-violet: #683EF6;
+  --clutch-lime:   #C6FF33;
+  --clutch-ink:    #fffdfa;
+
+  --sl-color-accent:      #683EF6;
+  --sl-color-accent-low:  rgba(104,62,246,.2);
+  --sl-color-accent-high: #C6FF33;
+
+  /* Gamme grise Clutch dark : white → black */
+  --sl-color-white:   #fffdfa;
+  --sl-color-gray-1:  #e8e3dc;
+  --sl-color-gray-2:  #b8b3ac;
+  --sl-color-gray-3:  #888380;
+  --sl-color-gray-4:  #58544f;
+  --sl-color-gray-5:  #38352f;
+  --sl-color-gray-6:  #252220;
+  --sl-color-gray-7:  #1f1e22;
+  --sl-color-black:   #1a191c;
+
+  --sl-font:      'Space Grotesk', system-ui, sans-serif;
+  --sl-font-mono: 'IBM Plex Mono', monospace;
+}
+
+/* ---- BRUTALISME : border-radius 0 partout ---- */
+*, *::before, *::after { border-radius: 0 !important; }
+
+/* ---- TITRES en Space Grotesk Bold ---- */
+h1, h2, h3, h4,
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ---- Signature : le slash "/" devant les h2 ---- */
+.sl-markdown-content h2::before {
+  content: "/ ";
+  color: var(--clutch-violet);
+}
+
+/* ---- Logo agrandi dans l'en-tête ---- */
+:root { --sl-nav-height: 5rem; }
+.site-title img {
+  height: 6.5rem !important;
+  width: auto !important;
+  padding: 0 !important;
+}

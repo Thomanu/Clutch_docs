@@ -1,36 +1,36 @@
----
+﻿---
 title: Modal
-description: Fenêtre modale — confirmation, destructive, succès. Coins HUD, overlay 70 %.
+description: FenÃªtre modale â€” confirmation, destructive, succÃ¨s. Coins HUD, overlay 70 %.
 ---
 
 import Modal from '../../../components/clutch/Modal.tsx';
 import ModalDemo from '../../../components/clutch/ModalDemo.tsx';
 
-Fenêtre modale. 3 types : **confirmation** (coins HUD violet), **destructive** (bordure rouge + zone danger), **succès** (anneau lime + coins HUD lime). Overlay noir 70 %.
+FenÃªtre modale. 3 types : **confirmation** (coins HUD violet), **destructive** (bordure rouge + zone danger), **succÃ¨s** (anneau lime + coins HUD lime). Overlay noir 70 %.
 
-## Démo interactive
+## DÃ©mo interactive
 
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', padding: '24px', background: '#f6f6f8' }}>
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', padding: '24px', background: '#1a191c' }}>
   <ModalDemo type="confirmation" client:load />
   <ModalDemo type="destructive" client:load />
   <ModalDemo type="success" client:load />
 </div>
 
-## Aperçu (panneaux en ligne)
+## AperÃ§u (panneaux en ligne)
 
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', alignItems: 'flex-start', padding: '32px 24px', background: '#f6f6f8' }}>
-  <Modal inline type="confirmation" title="Rejoindre le tournoi ?" highlight="Nova Esports" body="Tu pourras te désinscrire jusqu’au début du tournoi." confirmLabel="Confirmer" client:load />
-  <Modal inline type="destructive" title="Action irréversible" body="Supprimer cette équipe est définitif." consequences={['Membres retirés', 'Statistiques perdues', 'Tournois annulés']} confirmLabel="Supprimer" client:load />
-  <Modal inline type="success" title="Check-in confirmé" body="Ton équipe est prête pour 20:00." confirmLabel="Fermer" client:load />
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', alignItems: 'flex-start', padding: '32px 24px', background: '#1a191c' }}>
+  <Modal inline type="confirmation" title="Rejoindre le tournoi ?" highlight="Nova Esports" body="Tu pourras te dÃ©sinscrire jusquâ€™au dÃ©but du tournoi." confirmLabel="Confirmer" client:load />
+  <Modal inline type="destructive" title="Action irrÃ©versible" body="Supprimer cette Ã©quipe est dÃ©finitif." consequences={['Membres retirÃ©s', 'Statistiques perdues', 'Tournois annulÃ©s']} confirmLabel="Supprimer" client:load />
+  <Modal inline type="success" title="Check-in confirmÃ©" body="Ton Ã©quipe est prÃªte pour 20:00." confirmLabel="Fermer" client:load />
 </div>
 
 ## Specs
 
 | Type         | Conteneur                                            |
 | ------------ | ---------------------------------------------------- |
-| Confirmation | 520px · coins HUD violet (TL/TR) · confirm violet     |
-| Destructive  | 480px · bordure rouge + glow · zone danger + conséquences |
-| Succès       | 480px · anneau lime + coins HUD lime · confirm lime   |
+| Confirmation | 520px Â· coins HUD violet (TL/TR) Â· confirm violet     |
+| Destructive  | 480px Â· bordure rouge + glow Â· zone danger + consÃ©quences |
+| SuccÃ¨s       | 480px Â· anneau lime + coins HUD lime Â· confirm lime   |
 
 Tous partagent : overlay noir 70 %, fond #fff (remap de #1f1e22), header + footer, bouton de fermeture.
 
@@ -38,16 +38,16 @@ Tous partagent : overlay noir 70 %, fond #fff (remap de #1f1e22), header + foote
 
 ```ts
 type?: 'confirmation' | 'destructive' | 'success'
-title: string · body?: string
-highlight?: string          // pill équipe (confirmation)
+title: string Â· body?: string
+highlight?: string          // pill Ã©quipe (confirmation)
 consequences?: string[]     // (destructive)
 confirmLabel?, cancelLabel?: string
-open?: boolean · inline?: boolean
+open?: boolean Â· inline?: boolean
 onConfirm?, onClose?: () => void
 ```
 
 ## Usage
 
-- `inline` (doc) affiche le panneau dans le flux ; sinon le composant est un overlay piloté par `open`.
-- **Destructive** pour les actions irréversibles — toujours lister les conséquences.
-- Le bouton « positif » (succès) est en **lime avec glow**.
+- `inline` (doc) affiche le panneau dans le flux ; sinon le composant est un overlay pilotÃ© par `open`.
+- **Destructive** pour les actions irrÃ©versibles â€” toujours lister les consÃ©quences.
+- Le bouton Â« positif Â» (succÃ¨s) est en **lime avec glow**.

@@ -1,29 +1,29 @@
----
+﻿---
 title: Tab
-description: Onglet à soulignement — actif = underline violet 2px + glow.
+description: Onglet Ã  soulignement â€” actif = underline violet 2px + glow.
 ---
 
 import Tab from '../../../components/clutch/Tab.tsx';
 
-Onglet (pattern **soulignement**). Actif = border-bottom violet 2px + drop-shadow violet, texte encre. Inactif = texte ink 40 %, pas de bordure. Le pill violet est déprécié.
+Onglet (pattern **soulignement**). Actif = border-bottom violet 2px + drop-shadow violet, texte encre. Inactif = texte ink 40 %, pas de bordure. Le pill violet est dÃ©prÃ©ciÃ©.
 
-## Aperçu live
+## AperÃ§u live
 
-<div style={{ display: 'flex', gap: '4px', alignItems: 'center', padding: '24px 24px 0', background: '#f6f6f8', borderBottom: '1px solid rgba(26,25,28,.1)' }}>
+<div style={{ display: 'flex', gap: '4px', alignItems: 'center', padding: '24px 24px 0', background: '#1a191c', borderBottom: '1px solid rgba(255,253,250,.1)' }}>
   <Tab label="Toutes" count={47} active client:load />
   <Tab label="Ouvertes" count={12} client:load />
   <Tab label="En cours" count={3} client:load />
-  <Tab label="Terminées" count={32} client:load />
+  <Tab label="TerminÃ©es" count={32} client:load />
 </div>
 
 ## Specs
 
-| Propriété | Valeur                                   |
+| PropriÃ©tÃ© | Valeur                                   |
 | --------- | ---------------------------------------- |
 | Padding   | H 16px                                   |
-| Texte     | Space Grotesk Bold 11px · LS 0.5px · UPPERCASE |
+| Texte     | Space Grotesk Bold 11px Â· LS 0.5px Â· UPPERCASE |
 | Actif     | border-bottom 2px violet + drop-shadow violet |
-| Inactif   | texte ink 40 % · pas de bordure          |
+| Inactif   | texte ink 40 % Â· pas de bordure          |
 | Radius    | 0                                        |
 
 ## Props
@@ -37,4 +37,4 @@ onClick?: () => void
 
 ## Usage
 
-Format de libellé : `TOUTES · 47`. Un seul onglet actif à la fois ; gérer l'état actif au niveau du conteneur parent.
+Format de libellÃ© : `TOUTES Â· 47`. Un seul onglet actif Ã  la fois ; gÃ©rer l'Ã©tat actif au niveau du conteneur parent.
