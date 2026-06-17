@@ -1,32 +1,67 @@
 import React from 'react';
 import { colors, font, fontWeight, radius, shadow } from './tokens';
 
+export type StatCardAccent = 'lime' | 'violet';
+export type StatCardTendance = 'hausse' | 'baisse' | 'neutre';
+export type StatCardSize = 'default' | 'compact';
+
 export type StatCardProps = {
   value: string;
   label: string;
-  /** ex. "+5%" — masque la pill si absent */
-  trend?: string;
-  /** sens du trend (couleur de la pastille) */
-  trendDirection?: 'up' | 'down';
+  delta?: string;
+  tendance?: StatCardTendance;
+  accent?: StatCardAccent;
+  size?: StatCardSize;
   showSparkline?: boolean;
+  showIcon?: boolean;
 };
 
 export default function StatCard({
   value,
   label,
-  trend,
-  trendDirection = 'up',
+  delta,
+  tendance = 'hausse',
+  accent = 'lime',
+  size = 'default',
   showSparkline = true,
+  showIcon = false,
 }: StatCardProps) {
+  const isCompact = size === 'compact';
+
+  const accentColor = accent === 'lime' ? colors.lime : colors.violet;
+  const accentBg = accent === 'lime' ? colors.lime08 : colors.violet08;
+  const accentBorder = accent === 'lime' ? colors.lime40 : colors.violet40;
+  const sparklineEnd = accent === 'lime' ? colors.lime80 : colors.violet80;
+
+  const trendColor =
+    tendance === 'hausse' ? accentColor :
+    tendance === 'baisse' ? colors.error :
+    colors.inkAlpha40;
+
+  const trendBg =
+    tendance === 'hausse' ? accentBg :
+    tendance === 'baisse' ? colors.error10 :
+    colors.inkAlpha5;
+
+  const trendBorder =
+    tendance === 'hausse' ? accentBorder :
+    tendance === 'baisse' ? colors.error40 :
+    colors.inkAlpha20;
+
+  const trendArrow =
+    tendance === 'hausse' ? '▲' :
+    tendance === 'baisse' ? '▼' :
+    '—';
+
   const card: React.CSSProperties = {
     position: 'relative',
     boxSizing: 'border-box',
-    width: 268,
-    height: 128,
+    width: isCompact ? 224 : 268,
+    height: isCompact ? 104 : 128,
     background: colors.surface,
     border: `1px solid ${colors.inkAlpha10}`,
     borderRadius: radius.none,
-    padding: '20px 20px 16px',
+    padding: isCompact ? '16px 16px 12px' : '20px 20px 16px',
     display: 'flex',
     flexDirection: 'column',
     gap: 6,
@@ -34,50 +69,67 @@ export default function StatCard({
     fontFamily: font.sans,
   };
 
-  // Light mode : pastille de tendance = teinte d'accent + texte encre (lisible)
-  const up = trendDirection === 'up';
   const trendPill: React.CSSProperties = {
     display: 'inline-flex',
     alignItems: 'center',
     gap: 4,
     padding: '2px 6px',
-    background: up ? colors.lime08 : colors.error10,
-    border: `1px solid ${up ? colors.lime40 : colors.error40}`,
+    background: trendBg,
+    border: `1px solid ${trendBorder}`,
     borderRadius: radius.none,
     fontFamily: font.sans,
     fontWeight: fontWeight.medium,
     fontSize: 11,
     lineHeight: 1,
-    color: colors.ink,
+    color: tendance === 'neutre' ? colors.inkAlpha60 : colors.ink,
+  };
+
+  const iconBox: React.CSSProperties = {
+    width: 24,
+    height: 24,
+    background: accentBg,
+    border: `1px solid ${accentBorder}`,
+    borderRadius: radius.none,
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 12,
+    color: accentColor,
+    flexShrink: 0,
   };
 
   return (
     <div style={card}>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', minHeight: 17 }}>
-        {trend && (
+      {/* Header row */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: 17 }}>
+        {showIcon ? <span style={iconBox}>◆</span> : <span />}
+        {delta !== undefined && (
           <span style={trendPill}>
-            {up ? '▲' : '▼'} {trend}
+            {trendArrow} {delta}
           </span>
         )}
       </div>
-      {/* valeur : encre + halo lime (glow signature, lisible en light mode) */}
+
+      {/* Value */}
       <div
         style={{
           fontFamily: font.sans,
           fontWeight: fontWeight.bold,
-          fontSize: 40,
+          fontSize: isCompact ? 28 : 40,
           lineHeight: 1,
           color: colors.ink,
-          textShadow: shadow.textGlowLime,
+          textShadow: accent === 'lime' ? shadow.textGlowLime : shadow.glowViolet,
         }}
       >
         {value}
       </div>
+
+      {/* Label */}
       <div
         style={{
           fontFamily: font.sans,
           fontWeight: fontWeight.regular,
-          fontSize: 12,
+          fontSize: isCompact ? 11 : 12,
           letterSpacing: '0.5px',
           textTransform: 'uppercase',
           color: colors.inkAlpha60,
@@ -85,6 +137,8 @@ export default function StatCard({
       >
         {label}
       </div>
+
+      {/* Sparkline */}
       {showSparkline && (
         <div
           style={{
@@ -92,8 +146,8 @@ export default function StatCard({
             left: 0,
             right: 0,
             bottom: 0,
-            height: 4,
-            background: `linear-gradient(90deg, ${colors.violet30} 0%, ${colors.violet60} 70%, ${colors.lime80} 100%)`,
+            height: isCompact ? 5 : 6,
+            background: `linear-gradient(90deg, ${colors.violet30} 0%, ${colors.violet60} 70%, ${sparklineEnd} 100%)`,
           }}
         />
       )}

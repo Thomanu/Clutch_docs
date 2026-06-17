@@ -56,9 +56,9 @@ export type ButtonProps = {
 /* -------------------------------------------------------------------------- */
 
 const SIZES: Record<ButtonSize, { height: number; padH: number; fontSize: number }> = {
-  sm: { height: 32, padH: 14, fontSize: 12 },
-  md: { height: 44, padH: 20, fontSize: 14 },
-  lg: { height: 56, padH: 28, fontSize: 18 },
+  sm: { height: 32, padH: 12, fontSize: 12 },
+  md: { height: 40, padH: 16, fontSize: 14 },
+  lg: { height: 48, padH: 24, fontSize: 14 },
 };
 
 type StatefulColors = { bg: string; hover: string; active: string; fg: string; border: string };
@@ -145,8 +145,8 @@ export default function Button({
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: 16,
-    height: 16,
+    width: 18,
+    height: 18,
     flexShrink: 0,
   };
 

@@ -7,6 +7,7 @@ export type PlayerRole = 'Duelist' | 'Initiator' | 'Controller' | 'Sentinel' | '
 export type ReadyState = 'default' | 'ready' | 'notReady';
 export type StatType = 'kd' | 'rank' | 'winrate' | 'adr' | 'mvp';
 export type KdTrend = 'none' | 'positive' | 'negative';
+export type PlayerLayout = 'compact' | 'table';
 
 export type PlayerRowProps = {
   name: string;
@@ -20,6 +21,15 @@ export type PlayerRowProps = {
   statValue?: string;
   kdTrend?: KdTrend;
   action?: boolean;
+  layout?: PlayerLayout;
+  /** Table layout: ancienneté (ex. "Depuis 6 mois") */
+  seniority?: string;
+  /** Table layout: disponibilités L M M J V S D (7 booléens) */
+  availability?: boolean[];
+  /** Table layout: matchs joués */
+  matchesPlayed?: number;
+  /** Table layout: win rate 0-100 */
+  winRate?: number;
   onAction?: () => void;
 };
 
@@ -27,8 +37,8 @@ export type PlayerRowProps = {
 const ROLE_STYLE: Record<PlayerRole, { bg: string; border: string; text: string }> = {
   Initiator: { bg: colors.lime10, border: colors.lime40, text: colors.ink },
   IGL: { bg: colors.lime10, border: colors.lime40, text: colors.ink },
-  Sentinel: { bg: colors.lime10, border: colors.lime40, text: colors.ink },
-  Flex: { bg: colors.lime10, border: colors.lime40, text: colors.ink },
+  Sentinel: { bg: colors.inkAlpha5, border: colors.inkAlpha20, text: colors.inkAlpha60 },
+  Flex: { bg: colors.inkAlpha5, border: colors.inkAlpha20, text: colors.inkAlpha60 },
   Controller: { bg: colors.success10, border: 'rgba(56,142,60,.4)', text: colors.success },
   Duelist: { bg: colors.error10, border: colors.error40, text: colors.error },
 };
@@ -78,10 +88,87 @@ export default function PlayerRow({
   statValue = '1.24',
   kdTrend = 'none',
   action = false,
+  layout = 'compact',
+  seniority,
+  availability,
+  matchesPlayed,
+  winRate,
   onAction,
 }: PlayerRowProps) {
   const [hover, setHover] = useState(false);
 
+  /* ---------- Layout=Table (1120×72px) ---------- */
+  if (layout === 'table') {
+    const DAYS = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+    const avail = availability ?? Array(7).fill(true);
+    return (
+      <div
+        style={{
+          position: 'relative',
+          boxSizing: 'border-box',
+          display: 'grid',
+          gridTemplateColumns: '48px 160px 120px 120px 140px 80px 80px 1fr',
+          alignItems: 'center',
+          gap: 12,
+          width: '100%',
+          maxWidth: 1120,
+          height: 72,
+          padding: '0 20px',
+          background: selected ? colors.violet10 : hover ? colors.surfaceAlt : colors.surface,
+          border: `1px solid ${selected ? colors.violet40 : colors.inkAlpha5}`,
+          borderRadius: radius.none,
+          fontFamily: font.sans,
+          transition: 'background 120ms ease',
+        }}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+        {/* Col 1: Avatar */}
+        <Avatar size="md" alt={name} status={status} />
+        {/* Col 2: Pseudo + captain */}
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, overflow: 'hidden' }}>
+          <span style={{ fontFamily: font.sans, fontWeight: fontWeight.bold, fontSize: 14, color: colors.ink, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{name}</span>
+          {captain && (
+            <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 16, height: 16, background: colors.lime, color: colors.ink, fontFamily: font.sans, fontWeight: fontWeight.bold, fontSize: 11, lineHeight: 1, borderRadius: radius.none, flexShrink: 0 }}>C</span>
+          )}
+        </span>
+        {/* Col 3: Ancienneté */}
+        <span style={{ fontFamily: font.sans, fontSize: 12, color: colors.inkAlpha60 }}>{seniority ?? '—'}</span>
+        {/* Col 4: Rôle */}
+        {role ? (
+          <span style={{ alignSelf: 'center', padding: '3px 8px', background: ROLE_STYLE[role].bg, border: `1px solid ${ROLE_STYLE[role].border}`, borderRadius: radius.none, fontFamily: font.sans, fontWeight: fontWeight.medium, fontSize: 11, color: ROLE_STYLE[role].text }}>
+            {role}
+          </span>
+        ) : <span />}
+        {/* Col 5: Disponibilités */}
+        <div style={{ display: 'flex', gap: 3 }}>
+          {DAYS.map((d, i) => (
+            <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+              <span style={{ fontFamily: font.mono, fontSize: 8, color: colors.inkAlpha40 }}>{d}</span>
+              <span style={{ width: 14, height: 14, background: avail[i] ? colors.lime20 : colors.inkAlpha5, border: `1px solid ${avail[i] ? colors.lime40 : colors.inkAlpha10}`, borderRadius: radius.none }} />
+            </div>
+          ))}
+        </div>
+        {/* Col 6: K/D */}
+        <StatDisplay statType={statType} statValue={statValue} kdTrend={kdTrend} />
+        {/* Col 7: Matchs joués */}
+        <span style={{ fontFamily: font.mono, fontSize: 13, color: colors.ink, textAlign: 'center' }}>{matchesPlayed ?? '—'}</span>
+        {/* Col 8: Win Rate */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          {winRate !== undefined && (
+            <>
+              <div style={{ flex: 1, height: 4, background: colors.inkAlpha10, borderRadius: radius.none, overflow: 'hidden' }}>
+                <div style={{ width: `${winRate}%`, height: '100%', background: `linear-gradient(90deg, ${colors.violet30} 0%, ${colors.lime} 100%)` }} />
+              </div>
+              <span style={{ fontFamily: font.mono, fontSize: 12, color: colors.ink, flexShrink: 0 }}>{winRate}%</span>
+            </>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  /* ---------- Layout=Compact (548×64px) — défaut ---------- */
   const row: React.CSSProperties = {
     position: 'relative',
     boxSizing: 'border-box',

@@ -70,8 +70,8 @@ export default function EventCard({
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      {/* Date block */}
-      <div style={{ width: 48, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+      {/* Date block — 48×56px */}
+      <div style={{ width: 48, height: 56, flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center' }}>
         <span style={{ fontFamily: font.mono, fontWeight: fontWeight.medium, fontSize: 10, letterSpacing: '1px', textTransform: 'uppercase', color: colors.inkAlpha40 }}>
           {date.weekday}
         </span>
@@ -92,12 +92,27 @@ export default function EventCard({
 
       {/* Right zone */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-        <div style={{ display: 'flex', gap: 4 }}>
-          {Array.from({ length: slotsTotal }).map((_, i) => (
-            <span key={i} style={slot(i)} />
-          ))}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
+          {state === 'live' && (
+            <span style={{
+              padding: '2px 6px',
+              background: colors.error,
+              fontFamily: font.mono,
+              fontWeight: fontWeight.bold,
+              fontSize: 9,
+              letterSpacing: '0.8px',
+              color: colors.snow,
+            }}>
+              EN DIRECT
+            </span>
+          )}
+          <div style={{ display: 'flex', gap: 4 }}>
+            {Array.from({ length: slotsTotal }).map((_, i) => (
+              <span key={i} style={slot(i)} />
+            ))}
+          </div>
         </div>
-        <span style={{ fontSize: 14, color: colors.inkAlpha30 }}>›</span>
+        <span style={{ fontSize: 14, color: colors.inkAlpha40 }}>›</span>
       </div>
     </div>
   );

@@ -80,7 +80,7 @@ export default function TournamentRow({
         <span style={{ fontFamily: font.display, fontWeight: 800, fontStyle: 'italic', fontSize: 18, lineHeight: '23px', color: colors.ink }}>
           {title}
         </span>
-        <span style={{ fontFamily: font.sans, fontSize: 12, color: colors.inkAlpha60 }}>{organizer}</span>
+        <span style={{ fontFamily: font.sans, fontSize: 14, color: colors.inkAlpha60 }}>{organizer}</span>
       </div>
 
       {/* Z2 Details */}

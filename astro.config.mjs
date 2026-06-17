@@ -45,6 +45,7 @@ export default defineConfig({
             { label: 'Bracket Match', link: '/composants/bracket-match/' },
             { label: 'Modal', link: '/composants/modal/' },
             { label: 'Empty State', link: '/composants/empty-state/' },
+            { label: 'Sidebar', link: '/composants/sidebar/' },
           ],
         },
       ],

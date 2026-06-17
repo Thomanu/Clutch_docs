@@ -1,0 +1,79 @@
+---
+title: Sidebar
+description: Navigation latérale principale — 256px, logo, profil, nav, widget prochain match, footer serveur.
+---
+
+import Sidebar from '../../../components/clutch/Sidebar.tsx';
+
+Navigation latérale fixe de Clutch. Présente sur tous les écrans connectés en Desktop. 11 variants sur 4 axes.
+
+## Aperçu live — Expanded / Theme Purple
+
+<div style={{ display: 'flex', gap: '32px', padding: '32px 24px', background: '#f6f6f8', flexWrap: 'wrap' }}>
+  <Sidebar
+    activePage="dashboard"
+    theme="purple"
+    size="expanded"
+    auth="loggedIn"
+    username="xXClutchProXx"
+    userTag="#4892"
+    nextMatch={{ opponent: "Echo Rogue", time: "21:00", game: "VALORANT" }}
+    serverName="Clutch FR #1"
+    client:load
+  />
+</div>
+
+## Aperçu live — Collapsed / Theme Lime
+
+<div style={{ display: 'flex', gap: '32px', padding: '32px 24px', background: '#f6f6f8', flexWrap: 'wrap' }}>
+  <Sidebar activePage="arena" theme="lime" size="collapsed" auth="loggedIn" client:load />
+</div>
+
+## Aperçu live — LoggedOut
+
+<div style={{ display: 'flex', gap: '32px', padding: '32px 24px', background: '#f6f6f8', flexWrap: 'wrap' }}>
+  <Sidebar theme="purple" size="expanded" auth="loggedOut" client:load />
+</div>
+
+## Variants
+
+| Axe   | Valeurs                                                                       |
+| ----- | ----------------------------------------------------------------------------- |
+| State | default · dashboard · squadhub · tacticalboard · arena · monprofil · notifications · aide |
+| Size  | expanded (256px) · collapsed (64px)                                           |
+| Auth  | loggedIn · loggedOut                                                          |
+| Theme | purple · lime                                                                 |
+
+## Specs
+
+| Élément           | Valeur                                                       |
+| ----------------- | ------------------------------------------------------------ |
+| Largeur Expanded  | 256px                                                        |
+| Largeur Collapsed | 64px                                                         |
+| Fond              | `#16151a` (contextual dark)                                  |
+| Bordure droite    | 1px ink 20%                                                  |
+| Item de menu      | icône 24px · Body/M/Regular · padding 12px H                 |
+| Item actif        | fond accent 8% · bordure gauche 2px accent · texte semibold  |
+| Séparateur        | 1px ink 20%                                                  |
+| Auth=LoggedOut    | bloc profil → CTA de connexion                               |
+
+## Props
+
+```ts
+activePage?: 'default' | 'dashboard' | 'squadhub' | 'tacticalboard'
+           | 'arena' | 'monprofil' | 'notifications' | 'aide'
+theme?: 'purple' | 'lime'        // défaut 'purple'
+size?: 'expanded' | 'collapsed'  // défaut 'expanded'
+auth?: 'loggedIn' | 'loggedOut'  // défaut 'loggedIn'
+username?: string
+userTag?: string
+nextMatch?: { opponent: string; time: string; game: string }
+serverName?: string
+```
+
+## Usage
+
+- Toujours appliquer le bon `activePage` pour marquer la page active dans la navigation.
+- Utiliser `auth="loggedOut"` sur les écrans publics (landing, connexion).
+- `size="collapsed"` pour les vues où la navigation doit s'effacer au profit du contenu.
+- Ne pas modifier l'ordre des items de navigation par écran — il est global et cohérent.
