@@ -6,6 +6,17 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Clutch Design System',
+      
+      // --- AJOUT POUR LA TRADUCTION EN FRANÇAIS ---
+      defaultLocale: 'root',
+      locales: {
+        root: {
+          label: 'Français',
+          lang: 'fr', 
+        },
+      },
+      // ------------------------------------------
+
       logo: {
         src: './src/assets/logo_clutch.png',
         replacesTitle: true,
@@ -13,14 +24,7 @@ export default defineConfig({
       customCss: ['./src/styles/custom.css'],
       components: {
         ThemeSelect: './src/components/EmptyThemeSelect.astro',
-        Search: './src/components/EmptySearch.astro',
       },
-      head: [
-        {
-          tag: 'script',
-          content: `(function(){try{document.documentElement.dataset.theme='dark';}catch(e){}})();`,
-        },
-      ],
       sidebar: [
         {
           label: 'Foundations',
@@ -53,7 +57,6 @@ export default defineConfig({
             { label: 'Modal', link: '/composants/modal/' },
             { label: 'Empty State', link: '/composants/empty-state/' },
             { label: 'Sidebar', link: '/composants/sidebar/' },
-            { label: 'Top Bar', link: '/composants/top-bar/' },
           ],
         },
       ],

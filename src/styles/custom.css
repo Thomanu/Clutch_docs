@@ -108,3 +108,8 @@ h1, h2, h3, h4,
   width: auto !important;
   padding: 0 !important;
 }
+
+/* ---- SIDEBAR : Texte noir sur l'élément actif (fond lime) ---- */
+starlight-sidebar a[aria-current="page"] {
+  color: var(--sl-color-black) !important;
+}
