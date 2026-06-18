@@ -109,7 +109,9 @@ h1, h2, h3, h4,
   padding: 0 !important;
 }
 
-/* ---- SIDEBAR : Texte noir sur l'élément actif (fond lime) ---- */
-starlight-sidebar a[aria-current="page"] {
+/* ---- SIDEBAR : Texte noir au survol, au clic et au focus ---- */
+starlight-sidebar a:hover,
+starlight-sidebar a:focus,
+starlight-sidebar a:active {
   color: var(--sl-color-black) !important;
 }
