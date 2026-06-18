@@ -1,39 +1,35 @@
-﻿---
+---
 title: Bracket Match
-description: Cellule de match dans un bracket â€” gagnant lime, perdant rouge, Ã©tat live.
+description: Cellule de match dans un bracket — gagnant lime, perdant rouge, état live.
 ---
 
-import BracketMatch from '../../../components/clutch/BracketMatch.tsx';
+Cellule de match d'un bracket. Deux slots (équipe + score) séparés par un filet. Gagnant = teinte lime + accent gauche, perdant = teinte rouge atténuée. État `live` = pill rouge + slots violet.
 
-Cellule de match d'un bracket. Deux slots (Ã©quipe + score) sÃ©parÃ©s par un filet. Gagnant = teinte lime + accent gauche, perdant = teinte rouge attÃ©nuÃ©e. Ã‰tat `live` = pill rouge + slots violet.
+## Aperçu
 
-## AperÃ§u live
-
-<div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', padding: '32px 24px', background: '#1a191c' }}>
-  <BracketMatch state="default" teams={[{ name: 'Nova', score: 13, winner: true }, { name: 'Apex', score: 7 }]} client:load />
-  <BracketMatch state="live" teams={[{ name: 'Vortex', score: 9 }, { name: 'Titan', score: 11 }]} client:load />
-</div>
+<img src="/images/composants/bracket.png" alt="Bracket Match — états default et live" style="width:100%;border:1px solid rgba(255,253,250,.08)" />
 
 ## Specs
 
-| Ã‰lÃ©ment        | Valeur                                                  |
-| -------------- | ------------------------------------------------------- |
-| Slot           | 220Ã—52px Â· px14 Â· gap10 Â· nom SG Medium 13 Â· score SG Bold 18 |
-| SÃ©parateur     | 1px ink 5 %                                             |
-| Default gagnant| fond lime 10 % Â· accent gauche 3px lime                 |
-| Default perdant| fond error 10 % Â· opacity 0.55 Â· score rouge            |
-| Live pill      | fond **#fe3939** (rouge unique) Â· dot 5px Â· Â« LIVE Â»    |
-| Live slots     | fond violet 8 % Â· bordure violet 30 % Â· scores encre    |
-
-Le rouge `#ff3b5c` du Figma est harmonisÃ© vers `#fe3939`.
+| Élément         | Valeur                                                       |
+| --------------- | ------------------------------------------------------------ |
+| Slot            | 220×52px · px14 · gap10 · nom SG Medium 13 · score SG Bold 18 |
+| Séparateur      | 1px ink 5%                                                   |
+| Gagnant (default)| fond lime 10% · accent gauche 3px lime                      |
+| Perdant (default)| fond error 10% · opacity 0.55 · score rouge                 |
+| Pill live       | fond `#fe3939` · point 5px · « LIVE »                        |
+| Slots live      | fond violet 8% · bordure violet 30% · scores encre          |
 
 ## Props
 
 ```ts
 state?: 'default' | 'live'
-teams: [{ name, score, winner? }, { name, score, winner? }]
+teams: [
+  { name: string; score: number; winner?: boolean },
+  { name: string; score: number; winner?: boolean }
+]
 ```
 
 ## Usage
 
-Brique d'un arbre de bracket. Le `winner: true` colore le slot gagnant. `live` signale le match en cours.
+Brique d'un arbre de bracket. `winner: true` colore le slot gagnant en lime. `live` signale le match en cours avec la pill rouge et les slots violet.

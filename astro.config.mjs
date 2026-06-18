@@ -13,6 +13,7 @@ export default defineConfig({
       customCss: ['./src/styles/custom.css'],
       components: {
         ThemeSelect: './src/components/EmptyThemeSelect.astro',
+        Search: './src/components/EmptySearch.astro',
       },
       head: [
         {
