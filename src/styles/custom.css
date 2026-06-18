@@ -110,8 +110,7 @@ h1, h2, h3, h4,
 }
 
 /* ---- SIDEBAR : Texte noir au survol, au clic et au focus ---- */
-.astro-3ii7xxms a:hover,
-starlight-sidebar a:focus,
-starlight-sidebar a:active {
+.astro-3ii7xxms a:hover
+ {
   color: var(--sl-color-black) !important;
 }
